@@ -5,7 +5,7 @@ if version > 580
     syntax reset
   endif
 endif
-let g:colors_name = "myeyes"
+let g:colors_name = "light"
 " }}}
 " Functions {{{
 function! s:hi(group,  fg, bg, style)
@@ -67,25 +67,26 @@ let s:cyan = [
       \ ]
 " }}}
 " General: {{{
-call s:hi("Search", s:none, s:bg[3], s:none)
+call s:hi("Search", s:fg[1], s:bg[3], s:bold)
 call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
-call s:hi("Normal", s:fg[0], s:bg[0], s:none)
+exe 'hi! Normal ctermfg='.s:fg[0][0].' ctermbg=NONE'
+      \ 'guifg='.s:fg[0][1].' guibg='.s:bg[0][1]
 call s:hi("NormalFloat", s:fg[0], s:bg[2], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 hi! link TermCursor Cursor
-call s:hi("TermCursorNC", s:none, s:bg[2], s:none)
+call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
 call s:hi("LineNr", s:bg[4], s:none, s:none)
 call s:hi("FoldColumn", s:bg[4], s:none, s:none)
-call s:hi("SignColumn", s:none, s:bg[1], s:none)
+call s:hi("SignColumn", s:none, s:none, s:none)
 call s:hi("QuickFixLine", s:bg[0], s:green[1], s:bold)
-call s:hi("CursorLineNr", s:fg[4], s:bg[1], s:none)
+call s:hi("CursorLineNr", s:bg[4], s:none, s:none)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("VertSplit", s:bg[3], s:none, s:none)
-call s:hi("Folded", s:fg[3], s:none, s:none)
+call s:hi("Folded", s:fg[4], s:none, s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
-call s:hi("Todo", s:fg[0], s:none, s:bold_underline)
-call s:hi('Visual', s:none, s:bg[2], s:none)
+call s:hi("Todo", s:blue[0], s:none, s:bold_underline)
+call s:hi('Visual', s:none, s:bg[1], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
@@ -105,7 +106,7 @@ call s:hi('PmenuSel', s:bg[0], s:fg[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[4], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[2], s:none)
 
-call s:hi('MatchParen', s:none, s:bg[3], s:bold)
+call s:hi('MatchParen', s:none, s:bg[2], s:underline)
 if has("spell")
 
   if has('nvim')
@@ -122,12 +123,13 @@ if has("spell")
 endif
 " }}}
 " Syntax: {{{
+hi! link luaBraces Normal
+hi! link luaTable Normal
+hi! link rustCommentLineDoc Comment
 call s:hi('htmlbold', s:none, s:none, s:bold)
 call s:hi('htmlItalic', s:none, s:none, s:italic)
-call s:hi('mkdCode', s:fg[0], s:none, s:none)
 
-
-call s:hi('Comment', s:fg[4], s:none, s:italic)
+call s:hi('Comment', s:fg[4], s:none, s:none)
 call s:hi('Conceal', s:blue[0], s:none, s:bold)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
@@ -136,6 +138,7 @@ call s:hi('Directory', s:blue[0], s:none, s:bold)
 call s:hi('Title', s:fg[0], s:none, s:bold)
 
 call s:hi("Keyword", s:fg[0], s:none, s:bold)
+hi! link Structure Keyword
 hi! link Statement Keyword
 hi! link Label Keyword
 hi! link Conditional Keyword
@@ -145,18 +148,20 @@ hi! link Exception Keyword
 call s:hi("Question", s:purple[1], s:none, s:bold)
 
 call s:hi("Operator", s:red[1], s:none, s:none)
-hi! link Identifier Operator
 hi! link Boolean Operator
 hi! link SpecialKey Operator
 
+call s:hi("Identifier", s:red[0], s:none, s:none)
+
 call s:hi("String", s:cyan[1], s:none, s:none)
+hi! link luaStringLongTag String
+
 
 
 call s:hi("Type", s:blue[0], s:none, s:none)
 hi! link Function Type
 
-
-call s:hi("Constant", s:purple[0], s:none, s:none)
+call s:hi("Constant", s:cyan[0], s:none, s:none)
 hi! link Character Constant
 
 call s:hi("PreProc", s:cyan[0], s:none, s:none)
@@ -164,13 +169,12 @@ hi! link Include PreProc
 hi! link Define PreProc
 hi! link Macro PreProc
 hi! link PreCondit PreProc
-hi! link Number PreProc
-hi! link Float PreProc
 hi! link Special PreProc
 
-call s:hi("StorageClass", s:cyan[0], s:none, s:none)
-hi! link Structure StorageClass
+call s:hi("StorageClass", s:fg[0], s:none, s:none)
 hi! link Typedef StorageClass
+hi! link Number StorageClass
+hi! link Float StorageClass
 " }}}
 " Terminal: {{{
 if has('nvim')
@@ -209,8 +213,8 @@ hi! link LspReferenceText LspDiagnosticsWarning
 hi! link LspReferenceRead LspDiagnosticsWarning
 hi! link LspReferenceWrite LspDiagnosticsWarning
 
-call s:hi("LspDiagnosticsErrorSign", s:red[0], s:bg[1], s:bold)
-call s:hi("LspDiagnosticsWarningSign", s:yellow[0], s:bg[1], s:bold)
+call s:hi("LspDiagnosticsErrorSign", s:red[0], s:none, s:bold)
+call s:hi("LspDiagnosticsWarningSign", s:yellow[1], s:none, s:bold)
 hi! link LspDiagnosticsInformationSign LspDiagnosticsWarningSign
 hi! link LspDiagnosticsHintSign LspDiagnosticsWarningSign
 
@@ -235,8 +239,7 @@ hi! link CocHintSign LspDiagnosticsWarning
 
 " }}}
 " Findr: {{{
-" hi! link FindrMatch IncSearch
-call s:hi("FindrMatch", s:fg[1], s:bg[3], s:bold)
+hi! link FindrMatch Search
 call s:hi("FindrSelected", s:none, s:bg[1], s:none)
 call s:hi("FindrDirPartial", s:fg[2],s:none, s:bold)
 " }}}
@@ -248,5 +251,9 @@ call s:hi("TablineSel", s:fg[0], s:bg[2], s:bold)
 call s:hi("Tabline", s:fg[3], s:bg[2], s:none)
 call s:hi("TablineFill", s:fg[3], s:bg[2], s:none)
 
+" }}}
+" LimeLight: {{{
+let g:limelight_conceal_guifg = s:fg[4][1]
+let g:limelight_conceal_ctermfg = s:fg[4][0]
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

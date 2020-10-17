@@ -39,8 +39,8 @@ if &bg == 'light'
         \ [ '236', '#303030'],
         \ [ '241', '#626262'],
         \ [ '244', '#808080'],
-        \ [ '246', '#949494'],
-        \ [ '248', '#a8a8a8'],
+        \ [ '245', '#8a8a8a'],
+        \ [ '247', '#9e9e9e'],
         \ ]
   let s:red = [
         \ ['124', '#af0000'],
@@ -76,17 +76,18 @@ if &bg == 'light'
   call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
   hi! link TermCursor Cursor
   call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
-  call s:hi("LineNr", s:bg[4], s:none, s:none)
+  call s:hi("LineNr", s:fg[4], s:none, s:none)
   call s:hi("FoldColumn", s:bg[4], s:none, s:none)
   call s:hi("SignColumn", s:none, s:none, s:none)
   call s:hi("QuickFixLine", s:bg[0], s:green[1], s:bold)
-  call s:hi("CursorLineNr", s:bg[4], s:none, s:none)
+  call s:hi("CursorLineNr", s:fg[4], s:none, s:none)
   call s:hi("CursorLine", s:none, s:bg[1], s:none)
   hi! link CursorColumn CursorLine
   call s:hi("VertSplit", s:bg[3], s:none, s:none)
+  call s:hi('MsgSeparator', s:bg[3], s:none, s:underline)
   call s:hi("Folded", s:fg[4], s:none, s:none)
   call s:hi("Error", s:bg[0], s:red[0], s:bold)
-  call s:hi("Todo", s:blue[0], s:none, s:bold_underline)
+  call s:hi("Todo", s:yellow[0], s:none, s:bold_underline)
   call s:hi('Visual', s:none, s:bg[1], s:none)
   hi! link VisualNOS Visual
 
@@ -127,7 +128,10 @@ if &bg == 'light'
   hi! link luaBraces Normal
   hi! link luaTable Normal
   hi! link rustCommentLineDoc Comment
+  call s:hi('mdHeader', s:fg[0], s:none, s:bold)
+  call s:hi('htmlLink', s:blue[0], s:none, s:none)
   call s:hi('htmlbold', s:none, s:none, s:bold)
+  call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
   call s:hi('htmlItalic', s:none, s:none, s:italic)
 
   call s:hi('Comment', s:fg[4], s:none, s:none)
@@ -136,9 +140,9 @@ if &bg == 'light'
 
   call s:hi('Directory', s:blue[0], s:none, s:bold)
 
-  call s:hi('Title', s:fg[0], s:none, s:bold)
+  call s:hi('Title', s:blue[0], s:none, s:bold)
 
-  call s:hi("Keyword", s:fg[0], s:none, s:bold)
+  call s:hi("Keyword", s:blue[0], s:none, s:bold)
   hi! link Structure Keyword
   hi! link Statement Keyword
   hi! link Label Keyword
@@ -154,7 +158,7 @@ if &bg == 'light'
 
   call s:hi("Identifier", s:red[0], s:none, s:none)
 
-  call s:hi("String", s:cyan[1], s:none, s:none)
+  call s:hi("String", s:green[0], s:none, s:none)
   hi! link luaStringLongTag String
 
 
@@ -164,15 +168,16 @@ if &bg == 'light'
 
   call s:hi("Constant", s:cyan[0], s:none, s:none)
   hi! link Character Constant
+  hi! link mdMath Constant
 
-  call s:hi("PreProc", s:cyan[0], s:none, s:none)
+  call s:hi("PreProc", s:purple[0], s:none, s:none)
+  hi! link Macro PreProc
   hi! link Include PreProc
   hi! link Define PreProc
-  hi! link Macro PreProc
   hi! link PreCondit PreProc
   hi! link Special PreProc
 
-  call s:hi("StorageClass", s:fg[0], s:none, s:none)
+  call s:hi("StorageClass", s:cyan[1], s:none, s:none)
   hi! link Typedef StorageClass
   hi! link Number StorageClass
   hi! link Float StorageClass
@@ -186,15 +191,15 @@ if &bg == 'light'
     let g:terminal_color_4 = s:blue[0][1]
     let g:terminal_color_5 = s:purple[0][1]
     let g:terminal_color_6 = s:cyan[0][1]
-    let g:terminal_color_7 = s:fg[3][1]
-    let g:terminal_color_8 = s:fg[2][1]
+    let g:terminal_color_7 = s:fg[0][1]
+    let g:terminal_color_8 = s:fg[4][1]
     let g:terminal_color_9 = s:red[1][1]
     let g:terminal_color_10 = s:green[1][1]
     let g:terminal_color_11 = s:yellow[1][1]
     let g:terminal_color_12 = s:blue[1][1]
     let g:terminal_color_13 = s:purple[1][1]
     let g:terminal_color_14 = s:cyan[1][1]
-    let g:terminal_color_15 = s:bg[0][1]
+    let g:terminal_color_15 = s:bg[3][1]
   endif
   " }}}
   " Diffs: {{{
@@ -207,7 +212,7 @@ if &bg == 'light'
   " }}}
   " LSP: {{{
   call s:hi("LspDiagnosticsError", s:red[0], s:none, s:bold)
-  call s:hi("LspDiagnosticsWarning", s:yellow[0], s:none, s:bold)
+  call s:hi("LspDiagnosticsWarning", s:purple[0], s:none, s:bold)
   hi! link LspDiagnosticsInformation LspDiagnosticsWarning
   hi! link LspDiagnosticsHint LspDiagnosticsWarning
   hi! link LspReferenceText LspDiagnosticsWarning
@@ -215,7 +220,7 @@ if &bg == 'light'
   hi! link LspReferenceWrite LspDiagnosticsWarning
 
   call s:hi("LspDiagnosticsErrorSign", s:red[0], s:none, s:bold)
-  call s:hi("LspDiagnosticsWarningSign", s:yellow[1], s:none, s:bold)
+  call s:hi("LspDiagnosticsWarningSign", s:purple[0], s:none, s:bold)
   hi! link LspDiagnosticsInformationSign LspDiagnosticsWarningSign
   hi! link LspDiagnosticsHintSign LspDiagnosticsWarningSign
 
@@ -224,13 +229,13 @@ if &bg == 'light'
         \.s:red[0][1]
         \.' gui=undercurl cterm=undercurl'
   exe 'hi! LspDiagnosticsUnderlineWarning guisp='
-        \.s:yellow[1][1]
+        \.s:purple[0][1]
         \.' gui=undercurl cterm=undercurl'
   exe 'hi! LspDiagnosticsUnderlineInformation guisp='
-        \.s:yellow[1][1]
+        \.s:purple[0][1]
         \.' gui=undercurl cterm=undercurl'
   exe 'hi! LspDiagnosticsUnderlineHint guisp='
-        \.s:yellow[1][1]
+        \.s:purple[0][1]
         \.' gui=undercurl cterm=undercurl'
 
   hi! link CocErrorSign LspDiagnosticsError
@@ -238,19 +243,27 @@ if &bg == 'light'
   hi! link CocInfoSign LspDiagnosticsWarning
   hi! link CocHintSign LspDiagnosticsWarning
 
+  hi! link CocErrorHighlight LspDiagnosticsUnderlineError
+  hi! link CocWarningHighlight LspDiagnosticsUnderlineWarning
+  hi! link CocInfoHighlight LspDiagnosticsUnderlineWarning
+  hi! link CocHintHighlight LspDiagnosticsUnderlineWarning
+
   " }}}
   " Findr: {{{
+  hi! link FindrBorder VertSplit
   hi! link FindrMatch Search
   call s:hi("FindrSelected", s:none, s:bg[1], s:none)
   call s:hi("FindrDirPartial", s:fg[2],s:none, s:bold)
   " }}}
   " StatusLine: {{{
-  call s:hi("StatusLine", s:fg[0], s:bg[2], s:bold)
-  call s:hi("StatusLineNC", s:fg[2], s:bg[2], s:none)
+  call s:hi("StatusLine", s:bg[3], s:bg[0], s:bold_underline)
+  call s:hi("StatusLineNC", s:bg[3], s:bg[0], s:underline)
+  " call s:hi("StatusLine", s:fg[0], s:bg[3], s:bold)
+  " call s:hi("StatusLineNC", s:fg[3], s:bg[3], s:none)
 
-  call s:hi("TablineSel", s:fg[0], s:bg[2], s:bold)
-  call s:hi("Tabline", s:fg[3], s:bg[2], s:none)
-  call s:hi("TablineFill", s:fg[3], s:bg[2], s:none)
+  call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold)
+  call s:hi("Tabline", s:fg[3], s:bg[0], s:none)
+  call s:hi("TablineFill", s:fg[3], s:bg[0], s:none)
 
   " }}}
   " LimeLight: {{{

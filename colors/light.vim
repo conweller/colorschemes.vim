@@ -29,18 +29,18 @@ if &bg == 'light'
   " }}}
   " Colors: {{{
   let s:bg = [
+        \ [ '231', '#ffffff'],
         \ [ '255', '#eeeeee'],
         \ [ '254', '#e4e4e4'],
         \ [ '253', '#dadada'],
-        \ [ '252', '#d0d0d0'],
-        \ [ '250', '#bcbcbc'],
+        \ [ '251', '#c6c6c6'],
         \ ]
   let s:fg = [
-        \ [ '236', '#303030'],
+        \ [ '16', '#000000'],
         \ [ '241', '#626262'],
         \ [ '244', '#808080'],
         \ [ '245', '#8a8a8a'],
-        \ [ '247', '#9e9e9e'],
+        \ [ '248', '#a8a8a8'],
         \ ]
   let s:red = [
         \ ['124', '#af0000'],
@@ -68,81 +68,79 @@ if &bg == 'light'
         \ ]
   " }}}
   " General: {{{
-  call s:hi("Search", s:fg[1], s:bg[3], s:bold)
+  call s:hi("Search", s:none, s:bg[3], s:none)
   call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
-  exe 'hi! Normal ctermfg='.s:fg[0][0].' ctermbg=NONE'
-        \ 'guifg='.s:fg[0][1].' guibg='.s:bg[0][1]
+  call s:hi("Normal", s:fg[0], s:bg[0], s:none)
   call s:hi("NormalFloat", s:fg[0], s:bg[2], s:none)
   call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
   hi! link TermCursor Cursor
   call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
-  call s:hi("LineNr", s:fg[4], s:none, s:none)
-  call s:hi("FoldColumn", s:bg[4], s:none, s:none)
+  call s:hi("LineNr", s:bg[3], s:none, s:none)
+  call s:hi("FoldColumn", s:red[1], s:none, s:none)
   call s:hi("SignColumn", s:none, s:none, s:none)
   call s:hi("QuickFixLine", s:bg[0], s:green[1], s:bold)
-  call s:hi("CursorLineNr", s:fg[4], s:none, s:none)
+  call s:hi("CursorLineNr", s:bg[3], s:bg[0], s:none)
   call s:hi("CursorLine", s:none, s:bg[1], s:none)
   hi! link CursorColumn CursorLine
   call s:hi("VertSplit", s:bg[3], s:none, s:none)
   call s:hi('MsgSeparator', s:bg[3], s:none, s:underline)
-  call s:hi("Folded", s:fg[4], s:none, s:none)
+  call s:hi("Folded", s:fg[4], s:bg[1], s:none)
   call s:hi("Error", s:bg[0], s:red[0], s:bold)
-  call s:hi("Todo", s:yellow[0], s:none, s:bold_underline)
-  call s:hi('Visual', s:none, s:bg[1], s:none)
+  call s:hi("Todo", s:fg[0], s:none, s:bold_italic_underline)
+  call s:hi('Visual', s:bg[0], s:blue[1], s:none)
   hi! link VisualNOS Visual
 
   call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
-  call s:hi('Substitute',s:fg[0], s:bg[3], s:bold)
   hi! link WarningMsg ErrorMsg
 
-  call s:hi('IncSearch',s:bg[0], s:blue[1], s:bold_underline)
-  hi! link MoreMsg IncSearch
-  hi! link MoreMsg IncSearch
+  call s:hi('IncSearch',s:bg[0], s:green[1], s:bold_underline)
+  call s:hi('Substitute',s:bg[0], s:red[1], s:bold_underline)
+  call s:hi('MoreMsg',s:bg[0], s:blue[1], s:bold_underline)
 
   call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
-  call s:hi("NonText", s:bg[3], s:none, s:none)
-  call s:hi("EndOfBuffer", s:bg[3], s:none, s:none)
+  call s:hi("NonText", s:bg[4], s:none, s:none)
+  call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 
   call s:hi('Pmenu', s:fg[0], s:bg[2], s:none)
   call s:hi('PmenuSel', s:bg[0], s:fg[0], s:bold)
   call s:hi('PmenuSbar', s:none, s:bg[4], s:none)
-  call s:hi('PmenuThumb', s:none, s:fg[2], s:none)
+  call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
 
-  call s:hi('MatchParen', s:none, s:bg[2], s:underline)
+  call s:hi('MatchParen', s:none, s:bg[3], s:none)
   if has("spell")
 
     if has('nvim')
-      exe 'hi! SpellBad guisp='.s:red[1][1]
-      exe 'hi! SpellCap guisp='.s:yellow[1][1]
-      exe 'hi! SpellLocal guisp='.s:yellow[1][1]
-      exe 'hi! SpellRare guisp='.s:yellow[1][1]
+      exe 'hi! SpellBad guisp='.s:red[0][1]
+      exe 'hi! SpellCap guisp='.s:yellow[0][1]
+      exe 'hi! SpellLocal guisp='.s:yellow[0][1]
+      exe 'hi! SpellRare guisp='.s:yellow[0][1]
     endif
 
-    call s:hi('SpellCap', s:none, s:none, s:undercurl)
-    call s:hi('SpellLocal', s:none, s:none, s:undercurl)
-    call s:hi('SpellRare', s:none, s:none, s:undercurl)
-    call s:hi('SpellBad', s:none, s:none, s:undercurl)
+    call s:hi('SpellCap', s:yellow[0], s:none, s:undercurl)
+    call s:hi('SpellLocal', s:yellow[0], s:none, s:undercurl)
+    call s:hi('SpellRare', s:yellow[0], s:none, s:undercurl)
+    call s:hi('SpellBad', s:red[0], s:none, s:undercurl)
   endif
   " }}}
   " Syntax: {{{
   hi! link luaBraces Normal
   hi! link luaTable Normal
   hi! link rustCommentLineDoc Comment
-  call s:hi('mdHeader', s:fg[0], s:none, s:bold)
+  call s:hi('mdCode', s:fg[1], s:none, s:none)
   call s:hi('htmlLink', s:blue[0], s:none, s:none)
   call s:hi('htmlbold', s:none, s:none, s:bold)
   call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
   call s:hi('htmlItalic', s:none, s:none, s:italic)
 
-  call s:hi('Comment', s:fg[4], s:none, s:none)
-  call s:hi('Conceal', s:blue[0], s:none, s:bold)
+  call s:hi('Comment', s:bg[4], s:none, s:italic)
+  call s:hi('Conceal', s:blue[1], s:none, s:none)
   call s:hi('Underlined', s:none, s:none, s:underline)
 
   call s:hi('Directory', s:blue[0], s:none, s:bold)
 
-  call s:hi('Title', s:blue[0], s:none, s:bold)
+  call s:hi('Title', s:fg[0], s:none, s:bold)
 
-  call s:hi("Keyword", s:blue[0], s:none, s:bold)
+  call s:hi("Keyword", s:fg[0], s:none, s:bold)
   hi! link Structure Keyword
   hi! link Statement Keyword
   hi! link Label Keyword
@@ -168,9 +166,8 @@ if &bg == 'light'
 
   call s:hi("Constant", s:cyan[0], s:none, s:none)
   hi! link Character Constant
-  hi! link mdMath Constant
 
-  call s:hi("PreProc", s:purple[0], s:none, s:none)
+  call s:hi("PreProc", s:blue[0], s:none, s:none)
   hi! link Macro PreProc
   hi! link Include PreProc
   hi! link Define PreProc
@@ -212,7 +209,7 @@ if &bg == 'light'
   " }}}
   " LSP: {{{
   call s:hi("LspDiagnosticsError", s:red[0], s:none, s:bold)
-  call s:hi("LspDiagnosticsWarning", s:purple[0], s:none, s:bold)
+  call s:hi("LspDiagnosticsWarning", s:yellow[0], s:none, s:bold)
   hi! link LspDiagnosticsInformation LspDiagnosticsWarning
   hi! link LspDiagnosticsHint LspDiagnosticsWarning
   hi! link LspReferenceText LspDiagnosticsWarning
@@ -220,7 +217,7 @@ if &bg == 'light'
   hi! link LspReferenceWrite LspDiagnosticsWarning
 
   call s:hi("LspDiagnosticsErrorSign", s:red[0], s:none, s:bold)
-  call s:hi("LspDiagnosticsWarningSign", s:purple[0], s:none, s:bold)
+  call s:hi("LspDiagnosticsWarningSign", s:yellow[0], s:none, s:bold)
   hi! link LspDiagnosticsInformationSign LspDiagnosticsWarningSign
   hi! link LspDiagnosticsHintSign LspDiagnosticsWarningSign
 
@@ -229,13 +226,13 @@ if &bg == 'light'
         \.s:red[0][1]
         \.' gui=undercurl cterm=undercurl'
   exe 'hi! LspDiagnosticsUnderlineWarning guisp='
-        \.s:purple[0][1]
+        \.s:yellow[0][1]
         \.' gui=undercurl cterm=undercurl'
   exe 'hi! LspDiagnosticsUnderlineInformation guisp='
-        \.s:purple[0][1]
+        \.s:yellow[0][1]
         \.' gui=undercurl cterm=undercurl'
   exe 'hi! LspDiagnosticsUnderlineHint guisp='
-        \.s:purple[0][1]
+        \.s:yellow[0][1]
         \.' gui=undercurl cterm=undercurl'
 
   hi! link CocErrorSign LspDiagnosticsError
@@ -250,25 +247,29 @@ if &bg == 'light'
 
   " }}}
   " Findr: {{{
-  hi! link FindrBorder VertSplit
+  call s:hi("FindrBorder", s:bg[3], s:none, s:none)
   hi! link FindrMatch Search
-  call s:hi("FindrSelected", s:none, s:bg[1], s:none)
+  hi! link FindrSelected CursorLine
   call s:hi("FindrDirPartial", s:fg[2],s:none, s:bold)
   " }}}
   " StatusLine: {{{
+
   call s:hi("StatusLine", s:bg[3], s:bg[0], s:bold_underline)
   call s:hi("StatusLineNC", s:bg[3], s:bg[0], s:underline)
-  " call s:hi("StatusLine", s:fg[0], s:bg[3], s:bold)
-  " call s:hi("StatusLineNC", s:fg[3], s:bg[3], s:none)
-
-  call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold)
-  call s:hi("Tabline", s:fg[3], s:bg[0], s:none)
-  call s:hi("TablineFill", s:fg[3], s:bg[0], s:none)
+  call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold_underline)
+  call s:hi("Tabline", s:fg[4], s:bg[0], s:underline)
+  call s:hi("TablineFill", s:fg[4], s:bg[0], s:underline)
+  exe 'hi! TablineSel guisp='.s:bg[3][1]
+  exe 'hi! Tabline guisp='.s:bg[3][1]
+  exe 'hi! TablineFill guisp='.s:bg[3][1]
 
   " }}}
   " LimeLight: {{{
   let g:limelight_conceal_guifg = s:fg[4][1]
   let g:limelight_conceal_ctermfg = s:fg[4][0]
+  " }}}
+  " Sneak: {{{
+  call s:hi("Sneak", s:fg[0], s:none, s:bold_underline)
   " }}}
 else
   exe 'source '.expand('<sfile>:p:h').'/dark.vim'

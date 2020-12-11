@@ -99,7 +99,7 @@ if &bg == 'light'
 
   call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
   call s:hi("NonText", s:bg[4], s:none, s:none)
-  call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
+  call s:hi("EndOfBuffer", s:bg[1], s:none, s:none)
 
   call s:hi('Pmenu', s:fg[0], s:bg[2], s:none)
   call s:hi('PmenuSel', s:bg[0], s:fg[0], s:bold)
@@ -126,7 +126,6 @@ if &bg == 'light'
   hi! link luaBraces Normal
   hi! link luaTable Normal
   hi! link rustCommentLineDoc Comment
-  call s:hi('mdCode', s:fg[1], s:none, s:none)
   call s:hi('htmlLink', s:blue[0], s:none, s:none)
   call s:hi('htmlbold', s:none, s:none, s:bold)
   call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)

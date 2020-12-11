@@ -98,7 +98,7 @@ call s:hi('MoreMsg',s:bg[0], s:blue[1], s:bold_underline)
 
 call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
 call s:hi("NonText", s:bg[4], s:none, s:none)
-call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
+call s:hi("EndOfBuffer", s:bg[2], s:none, s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[2], s:none)
 call s:hi('PmenuSel', s:bg[0], s:fg[0], s:bold)

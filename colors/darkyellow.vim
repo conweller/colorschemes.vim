@@ -1,17 +1,17 @@
-let g:colors_name = "dark"
+let g:colors_name = "darkyellow"
 let g:colors_bg = [
-      \ [ '233', '#121212'],
-      \ [ '234', '#1c1c1c' ],
-      \ [ '235', '#262626' ],
-      \ [ '236', '#303030' ],
-      \ [ '237', '#3a3a3a' ],
+      \ [ '233', '#291F1E' ],
+      \ [ '234', '#322826' ],
+      \ [ '235', '#37302F' ],
+      \ [ '236', '#3C3535' ],
+      \ [ '237', '#423535'],
       \ ]
 let g:colors_fg = [
-      \ [ '255', '#eeeeee' ],
-      \ [ '248', '#a8a8a8' ],
-      \ [ '246', '#949494' ],
-      \ [ '243', '#767676' ],
-      \ [ '239', '#4e4e4e' ],
+      \ [ '255', '#F5E2DF' ],
+      \ [ '248', '#AC8D88' ],
+      \ [ '246', '#9B6C66' ],
+      \ [ '243', '#745B57' ],
+      \ [ '239', '#5C433F' ],
       \ ]
 let g:colors_red = [
       \ [ '204', '#ff5f87' ],
@@ -41,4 +41,4 @@ let g:colors_cyan = [
 
 exe 'source '.expand('<sfile>:p:h').'/colors.vim'
 
-let g:colors_name = "dark"
+let g:colors_name = "darkyellow"

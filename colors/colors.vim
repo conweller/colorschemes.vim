@@ -43,16 +43,16 @@ call s:hi("Normal", s:fg[0], s:bg[0], s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[2], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 hi! link TermCursor Cursor
-call s:hi("TermCursorNC", s:bg[2], s:none, s:underline)
+call s:hi("TermCursorNC", s:none, s:bg[2], s:none)
 call s:hi("LineNr", s:bg[4], s:none, s:none)
 call s:hi("FoldColumn", s:red[1], s:none, s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
 call s:hi("QuickFixLine", s:bg[0], s:green[1], s:bold)
-call s:hi("CursorLineNr", s:bg[4], s:bg[0], s:bold)
+call s:hi("CursorLineNr", s:bg[4], s:bg[0], s:none)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("VertSplit", s:bg[3], s:bg[0], s:none)
-call s:hi('MsgSeparator', s:bg[3], s:none, s:underline)
+call s:hi('MsgSeparator', s:bg[3], s:bg[0], s:underline)
 call s:hi("Folded", s:bg[4], s:none, s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:fg[0], s:none, s:bold_italic_underline)
@@ -67,8 +67,8 @@ call s:hi('Substitute',s:bg[0], s:red[1], s:bold_underline)
 call s:hi('MoreMsg',s:bg[0], s:blue[1], s:bold_underline)
 
 call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
-call s:hi("NonText", s:bg[4], s:none, s:none)
-call s:hi("EndOfBuffer", s:bg[2], s:none, s:none)
+call s:hi("NonText", s:bg[3], s:none, s:none)
+call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[2], s:none)
 call s:hi('PmenuSel', s:bg[0], s:fg[0], s:bold)
@@ -96,9 +96,9 @@ hi! link luaBraces Normal
 hi! link luaTable Normal
 hi! link rustCommentLineDoc Comment
 hi! link pythonSpaceError Comment
-call s:hi('mdExecCmd', s:fg[4], s:bg[1], s:none)
-call s:hi('mdGridTable', s:fg[2], s:none, s:none)
-call s:hi('mdGridBar', s:fg[4], s:none, s:none)
+call s:hi('FennelSymbol', s:fg[0], s:bg[0], s:none)
+hi! link FennelSpecialForm Keyword
+hi! link FennelKeyword function
 call s:hi('mdOperator', s:fg[4], s:none, s:none)
 call s:hi('htmlLink', s:blue[0], s:none, s:none)
 call s:hi('htmlbold', s:none, s:none, s:bold)
@@ -113,7 +113,7 @@ call s:hi('Directory', s:blue[0], s:none, s:bold)
 
 call s:hi('Title', s:fg[0], s:none, s:bold)
 
-call s:hi("Keyword", s:blue[0], s:none, s:bold)
+call s:hi("Keyword", s:fg[0], s:none, s:bold)
 hi! link Structure Keyword
 hi! link Statement Keyword
 hi! link Label Keyword
@@ -127,17 +127,17 @@ call s:hi("Operator", s:red[1], s:none, s:none)
 hi! link Boolean Operator
 hi! link SpecialKey Operator
 
-call s:hi("Identifier", s:red[0], s:none, s:none)
+call s:hi("Identifier", s:blue[0], s:none, s:none)
 
-call s:hi("String", s:fg[3], s:none, s:none)
+call s:hi("String", s:green[0], s:none, s:none)
 hi! link luaStringLongTag String
 
 
 
-call s:hi("Type", s:fg[2], s:none, s:none)
+call s:hi("Type", s:purple[0], s:none, s:none)
 call s:hi("Function", s:blue[0], s:none, s:none)
 
-call s:hi("Constant", s:cyan[0], s:none, s:none)
+call s:hi("Constant", s:cyan[1], s:none, s:none)
 hi! link Character Constant
 
 call s:hi("PreProc", s:red[0], s:none, s:none)
@@ -183,6 +183,8 @@ call s:hi('DiffText', s:bg[0], s:yellow[1], s:none)
 " LSP: {{{
 call s:hi("LspDiagnosticsError", s:red[0], s:none, s:bold)
 call s:hi("LspDiagnosticsWarning", s:yellow[0], s:none, s:bold)
+call s:hi("LspCodeLens", s:bg[4], s:none, s:italic_underline)
+exe 'hi! LspCodeLens guisp='.s:bg[2][1]
 hi! link LspDiagnosticsInformation LspDiagnosticsWarning
 hi! link LspDiagnosticsHint LspDiagnosticsWarning
 hi! link LspReferenceText LspDiagnosticsWarning
@@ -208,6 +210,7 @@ exe 'hi! LspDiagnosticsUnderlineHint guisp='
       \.s:yellow[0][1]
       \.' gui=undercurl cterm=undercurl'
 
+hi! link CocCodeLens NonText
 hi! link CocErrorSign LspDiagnosticsError
 hi! link CocWarningSign LspDiagnosticsWarning
 hi! link CocInfoSign LspDiagnosticsWarning
@@ -220,20 +223,20 @@ hi! link CocHintHighlight LspDiagnosticsUnderlineWarning
 
 " }}}
 " Findr: {{{
-call s:hi("FindrBorder", s:bg[3], s:none, s:none)
+call s:hi("FindrBorder", s:bg[3], s:bg[0], s:none)
 hi! link FindrMatch Search
 hi! link FindrSelected CursorLine
 call s:hi("FindrDirPartial", s:fg[2],s:none, s:bold)
 " }}}
 " StatusLine: {{{
 
-call s:hi("StatusLine", s:fg[3], s:bg[0], s:bold_underline)
-call s:hi("StatusLineNC", s:fg[4], s:bg[0], s:underline)
+call s:hi("StatusLine", s:fg[0], s:bg[0], s:bold_underline)
+call s:hi("StatusLineNC", s:bg[4], s:bg[0], s:underline)
 exe 'hi! StatusLine guisp='.s:bg[3][1]
 exe 'hi! StatusLineNC guisp='.s:bg[3][1]
 call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold_underline)
-call s:hi("Tabline", s:fg[4], s:bg[0], s:underline)
-call s:hi("TablineFill", s:fg[4], s:bg[0], s:underline)
+call s:hi("Tabline", s:bg[4], s:bg[0], s:underline)
+call s:hi("TablineFill", s:bg[4], s:bg[0], s:underline)
 exe 'hi! TablineSel guisp='.s:bg[3][1]
 exe 'hi! Tabline guisp='.s:bg[3][1]
 exe 'hi! TablineFill guisp='.s:bg[3][1]
@@ -245,5 +248,13 @@ let g:limelight_conceal_ctermfg = s:fg[4][0]
 " }}}
 " Sneak: {{{
 call s:hi("Sneak", s:fg[0], s:none, s:bold_underline)
+" }}}
+" Telescope: {{{
+call s:hi("TelescopeSelection", s:none, s:bg[1], s:bold)
+call s:hi("TelescopeSelectionCaret", s:red[1], s:bg[1], s:bold)
+call s:hi("TelescopeMultiSelection", s:none, s:bg[2], s:bold)
+call s:hi("TelescopeBorder", s:bg[3], s:none, s:none)
+hi! link TelescopeMatching Search
+call s:hi("TelescopePromptPrefix", s:red[1], s:none, s:bold)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

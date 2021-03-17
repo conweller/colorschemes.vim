@@ -56,7 +56,7 @@ call s:hi('MsgSeparator', s:bg[3], s:bg[0], s:underline)
 call s:hi("Folded", s:bg[4], s:none, s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:fg[0], s:none, s:bold_italic_underline)
-call s:hi('Visual', s:bg[0], s:blue[1], s:none)
+call s:hi('Visual', s:none, s:bg[2], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
@@ -70,7 +70,7 @@ call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
 call s:hi("NonText", s:bg[3], s:none, s:none)
 call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 
-call s:hi('Pmenu', s:fg[0], s:bg[2], s:none)
+call s:hi('Pmenu', s:fg[0], s:bg[1], s:none)
 call s:hi('PmenuSel', s:bg[0], s:fg[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[4], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
@@ -100,6 +100,9 @@ call s:hi('FennelSymbol', s:fg[0], s:bg[0], s:none)
 hi! link FennelSpecialForm Keyword
 hi! link FennelKeyword function
 call s:hi('mdOperator', s:fg[4], s:none, s:none)
+call s:hi('mdTodo', s:red[0], s:none, s:bold_underline)
+call s:hi('mdDone', s:green[0], s:none, s:bold_underline)
+call s:hi('mdStarted', s:purple[0], s:none, s:bold_underline)
 call s:hi('htmlLink', s:blue[0], s:none, s:none)
 call s:hi('htmlbold', s:none, s:none, s:bold)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
@@ -231,12 +234,13 @@ call s:hi("FindrDirPartial", s:fg[2],s:none, s:bold)
 " StatusLine: {{{
 
 call s:hi("StatusLine", s:fg[0], s:bg[0], s:bold_underline)
-call s:hi("StatusLineNC", s:bg[4], s:bg[0], s:underline)
+call s:hi("StatusLineNC", s:fg[4], s:bg[0], s:underline)
+
 exe 'hi! StatusLine guisp='.s:bg[3][1]
 exe 'hi! StatusLineNC guisp='.s:bg[3][1]
 call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold_underline)
-call s:hi("Tabline", s:bg[4], s:bg[0], s:underline)
-call s:hi("TablineFill", s:bg[4], s:bg[0], s:underline)
+call s:hi("Tabline", s:fg[4], s:bg[0], s:underline)
+call s:hi("TablineFill", s:fg[4], s:bg[0], s:underline)
 exe 'hi! TablineSel guisp='.s:bg[3][1]
 exe 'hi! Tabline guisp='.s:bg[3][1]
 exe 'hi! TablineFill guisp='.s:bg[3][1]

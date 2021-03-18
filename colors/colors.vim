@@ -37,11 +37,11 @@ let s:purple = [5, 13]
 let s:cyan = [6, 14]
 " }}}
 " General: {{{
-call s:hi("Search", s:fg[1], s:none, s:bold_reverse)
+call s:hi("Search", s:fg[0], s:fg[1], s:bold)
 call s:hi("ModeMsg", s:fg[1], s:none, s:bold)
-call s:hi("MsgArea", s:fg[1], s:none, s:none)
+call s:hi("MsgArea", s:fg[0], s:none, s:none)
 call s:hi("Normal", s:fg[0], s:none, s:none)
-call s:hi("NormalFloat", s:fg[0], s:bg[1], s:none)
+call s:hi("NormalFloat", s:fg[0], s:bg[0], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 hi! link TermCursor Cursor
 call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
@@ -52,7 +52,7 @@ call s:hi("QuickFixLine", s:bg[0], s:green[1], s:bold)
 call s:hi("CursorLineNr", s:bg[1], s:none, s:none)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("VertSplit", s:bg[1], s:none, s:none)
+call s:hi("VertSplit", s:bg[1], s:bg[0], s:none)
 call s:hi('MsgSeparator', s:bg[1], s:none, s:underline)
 call s:hi("Folded", s:fg[1], s:none, s:italic)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
@@ -63,7 +63,7 @@ hi! link VisualNOS Visual
 call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
 hi! link WarningMsg ErrorMsg
 
-call s:hi('IncSearch',s:blue[1], s:none, s:bold_reverse)
+call s:hi('IncSearch',s:fg[0], s:green[1], s:bold)
 call s:hi('Substitute',s:red[1], s:none, s:bold_reverse)
 call s:hi('MoreMsg',s:bg[0], s:blue[1], s:bold_underline)
 
@@ -71,9 +71,9 @@ call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
 call s:hi("NonText", s:bg[1], s:none, s:none)
 call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 
-call s:hi('Pmenu', s:fg[0], s:bg[1], s:none)
-call s:hi('PmenuSel', s:bg[0], s:green[1], s:bold)
-call s:hi('PmenuSbar', s:none, s:bg[0], s:none)
+call s:hi('Pmenu', s:fg[0], s:bg[0], s:none)
+call s:hi('PmenuSel', s:green[1], s:none, s:bold_reverse)
+call s:hi('PmenuSbar', s:none, s:bg[1], s:none)
 call s:hi('PmenuThumb', s:none, s:green[0], s:none)
 
 call s:hi('MatchParen', s:none, s:bg[1], s:none)
@@ -104,7 +104,7 @@ call s:hi('mdOperator', s:fg[1], s:none, s:none)
 call s:hi('mdTodo', s:red[0], s:none, s:bold_underline)
 call s:hi('mdDone', s:green[0], s:none, s:bold_underline)
 call s:hi('mdStarted', s:purple[0], s:none, s:bold_underline)
-call s:hi('htmlLink', s:blue[0], s:none, s:none)
+call s:hi('htmlLink', s:red[0], s:none, s:none)
 call s:hi('htmlbold', s:none, s:none, s:bold)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
 call s:hi('htmlItalic', s:none, s:none, s:italic)
@@ -115,7 +115,7 @@ call s:hi('Underlined', s:none, s:none, s:underline)
 
 call s:hi('Directory', s:blue[0], s:none, s:bold)
 
-call s:hi('Title', s:fg[0], s:none, s:bold)
+call s:hi('Title', s:blue[0], s:none, s:bold)
 
 call s:hi("Keyword", s:blue[0], s:none, s:none)
 hi! link Structure Keyword
@@ -224,7 +224,8 @@ call s:hi("FindrDirPartial", s:fg[1],s:none, s:bold)
 " StatusLine: {{{
 
 call s:hi("StatusLine", s:fg[0], s:bg[0], s:bold)
-call s:hi("StatusLineNC", s:fg[1], s:bg[0], s:none)
+call s:hi("StatusLineNC", s:fg[1], s:bg[0], s:bold)
+call s:hi("StatusLineSep", s:bg[1], s:bg[0], s:bold)
 
 call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold)
 call s:hi("Tabline", s:fg[1], s:bg[0], s:none)

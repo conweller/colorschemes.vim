@@ -154,6 +154,7 @@ call s:hi("StorageClass", s:yellow[0], s:none, s:none)
 hi! link Typedef StorageClass
 " }}}
 " Terminal: {{{
+hi! link Terminal Normal
 if has('nvim')
   let g:terminal_color_0 = s:bg[1][1]
   let g:terminal_color_1 = s:red[0][1]

@@ -225,6 +225,8 @@ call s:hi("FindrDirPartial", s:fg[1],s:none, s:bold)
 " StatusLine: {{{
 
 call s:hi("StatusLine", s:fg[0], s:bg[1], s:bold)
+hi! link StatusLineTermNC StatusLineNC
+hi! link StatusLineTerm StatusLine
 call s:hi("StatusLineNC", s:fg[1], s:bg[1], s:bold)
 call s:hi("StatusLineSep", s:bg[1], s:none, s:reverse)
 

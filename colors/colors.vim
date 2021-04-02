@@ -27,8 +27,8 @@ let s:italic_underline = "ITALIC,UNDERLINE"
 let s:bold_italic_underline = "BOLD,ITALIC,UNDERLINE"
 " }}}
 " Colors: {{{
-let s:bg = [0, 15]
-let s:fg = [7, 8]
+let s:bg = [0, 8]
+let s:fg = [7, 15]
 let s:red = [1, 9]
 let s:green = [2, 10]
 let s:yellow = [3, 11]
@@ -37,26 +37,26 @@ let s:purple = [5, 13]
 let s:cyan = [6, 14]
 " }}}
 " General: {{{
-call s:hi("Search", s:fg[0], s:fg[1], s:bold)
+call s:hi("Search", s:fg[0], s:blue[1], s:bold)
 call s:hi("ModeMsg", s:fg[1], s:none, s:bold)
-call s:hi("MsgArea", s:fg[0], s:none, s:none)
+call s:hi("MsgArea", s:fg[1], s:none, s:none)
 call s:hi("Normal", s:fg[0], s:none, s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[0], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 hi! link TermCursor Cursor
-call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
+call s:hi("TermCursorNC", s:none, s:bg[0], s:none)
 call s:hi("LineNr", s:bg[1], s:none, s:none)
 call s:hi("FoldColumn", s:red[1], s:none, s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
-call s:hi("QuickFixLine", s:bg[0], s:green[1], s:bold)
+call s:hi("QuickFixLine", s:blue[0], s:none, s:bold_reverse)
 call s:hi("CursorLineNr", s:bg[1], s:none, s:none)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("VertSplit", s:bg[1], s:bg[0], s:none)
+call s:hi("VertSplit", s:bg[1], s:none, s:none)
 call s:hi('MsgSeparator', s:bg[1], s:none, s:underline)
 call s:hi("Folded", s:fg[1], s:none, s:italic)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
-call s:hi("Todo", s:fg[0], s:none, s:bold_italic_underline)
+call s:hi("Todo", s:fg[0], s:none, s:bold_underline)
 call s:hi('Visual', s:none, s:bg[1], s:none)
 hi! link VisualNOS Visual
 
@@ -72,11 +72,11 @@ call s:hi("NonText", s:bg[1], s:none, s:none)
 call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[0], s:none)
-call s:hi('PmenuSel', s:green[1], s:none, s:bold_reverse)
-call s:hi('PmenuSbar', s:none, s:bg[1], s:none)
-call s:hi('PmenuThumb', s:none, s:green[0], s:none)
+call s:hi('PmenuSel', s:fg[0], s:bg[1], s:none)
+call s:hi('PmenuSbar', s:none, s:none, s:none)
+call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
 
-call s:hi('MatchParen', s:none, s:bg[1], s:none)
+call s:hi('MatchParen', s:fg[0], s:fg[1], s:none)
 if has("spell")
 
   if has('nvim')
@@ -100,10 +100,8 @@ hi! link pythonSpaceError Comment
 call s:hi('FennelSymbol', s:fg[0], s:bg[0], s:none)
 hi! link FennelSpecialForm Keyword
 hi! link FennelKeyword function
-call s:hi('mdOperator', s:fg[1], s:none, s:none)
-call s:hi('mdTodo', s:red[0], s:none, s:bold_underline)
-call s:hi('mdDone', s:green[0], s:none, s:bold_underline)
-call s:hi('mdStarted', s:purple[0], s:none, s:bold_underline)
+call s:hi('mdDefinition', s:cyan[0], s:none, s:bold)
+call s:hi('mdCode', s:purple[0], s:none, s:none)
 call s:hi('htmlLink', s:red[0], s:none, s:none)
 call s:hi('htmlbold', s:none, s:none, s:bold)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
@@ -116,8 +114,9 @@ call s:hi('Underlined', s:none, s:none, s:underline)
 call s:hi('Directory', s:blue[0], s:none, s:bold)
 
 call s:hi('Title', s:blue[0], s:none, s:bold)
+hi! link mdHeaderSymbol Title
 
-call s:hi("Keyword", s:blue[0], s:none, s:none)
+call s:hi("Keyword", s:blue[0], s:none, s:bold)
 hi! link Structure Keyword
 hi! link Statement Keyword
 hi! link Label Keyword
@@ -139,8 +138,10 @@ hi! link luaStringLongTag String
 call s:hi("Type", s:yellow[0], s:none, s:none)
 call s:hi("Function", s:cyan[0], s:none, s:none)
 
-call s:hi("Constant", s:cyan[1], s:none, s:none)
+call s:hi("Constant", s:cyan[0], s:none, s:none)
 hi! link Character Constant
+hi! link Number Constant
+hi! link Float Constant
 
 call s:hi("PreProc", s:purple[0], s:none, s:none)
 hi! link Macro PreProc
@@ -149,10 +150,8 @@ hi! link Define PreProc
 hi! link PreCondit PreProc
 hi! link Special PreProc
 
-call s:hi("StorageClass", s:cyan[1], s:none, s:none)
+call s:hi("StorageClass", s:yellow[0], s:none, s:none)
 hi! link Typedef StorageClass
-hi! link Number StorageClass
-hi! link Float StorageClass
 " }}}
 " Terminal: {{{
 if has('nvim')
@@ -175,12 +174,13 @@ if has('nvim')
 endif
 " }}}
 " Diffs: {{{
-call s:hi('DiffDelete', s:bg[0], s:red[0], s:none)
+call s:hi('DiffDelete', s:red[1], s:none, s:reverse)
 hi! link DiffRemoved DiffDelete
-call s:hi('DiffAdd', s:bg[0], s:green[0], s:none)
+call s:hi('DiffAdd', s:blue[1], s:none, s:reverse)
 hi! link DiffAdded DiffAdd
-call s:hi('DiffChange', s:bg[0], s:cyan[1], s:none)
-call s:hi('DiffText', s:bg[0], s:yellow[1], s:none)
+call s:hi('DiffChange', s:none, s:bg[0], s:none)
+call s:hi('GitGutterChange', s:bg[0], s:none, s:none)
+call s:hi('DiffText', s:yellow[1], s:none, s:reverse)
 " }}}
 " LSP: {{{
 call s:hi("LspDiagnosticsError", s:red[0], s:none, s:bold)
@@ -199,9 +199,10 @@ hi! link LspDiagnosticsHintSign LspDiagnosticsWarningSign
 
 
 call s:hi ('LspDiagnosticsUnderlineHint', s:none, s:none, s:underline)
-hi link LspDiagnosticsUnderlineError LspDiagnosticsUnderlineHint
-hi link LspDiagnosticsUnderlineWarning LspDiagnosticsUnderlineHint
-hi link LspDiagnosticsUnderlineInformation LspDiagnosticsUnderlineHint
+hi! link LspDiagnosticsUnderlineError LspDiagnosticsUnderlineHint
+hi! link LspDiagnosticsUnderlineWarning LspDiagnosticsUnderlineHint
+hi! link LspDiagnosticsUnderlineInformation LspDiagnosticsUnderlineHint
+
 
 hi! link CocCodeLens NonText
 hi! link CocErrorSign LspDiagnosticsError
@@ -223,19 +224,13 @@ call s:hi("FindrDirPartial", s:fg[1],s:none, s:bold)
 " }}}
 " StatusLine: {{{
 
-call s:hi("StatusLine", s:fg[0], s:bg[0], s:bold)
-call s:hi("StatusLineNC", s:fg[1], s:bg[0], s:bold)
-call s:hi("StatusLineSep", s:bg[1], s:bg[0], s:bold)
+call s:hi("StatusLine", s:fg[0], s:bg[1], s:bold)
+call s:hi("StatusLineNC", s:fg[1], s:bg[1], s:bold)
+call s:hi("StatusLineSep", s:bg[1], s:none, s:reverse)
 
-call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold)
-call s:hi("Tabline", s:fg[1], s:bg[0], s:none)
-call s:hi("TablineFill", s:fg[1], s:bg[0], s:none)
+call s:hi("TablineSel", s:fg[0], s:bg[1], s:bold)
+call s:hi("Tabline", s:fg[1], s:bg[1], s:none)
+call s:hi("TablineFill", s:fg[1], s:bg[1], s:none)
 
-" }}}
-" Git Gutter: {{{
-call s:hi('GitGutterAdd', s:blue[1], s:none, s:none)
-call s:hi('GitGutterChange', s:bg[1], s:none, s:none)
-call s:hi('GitGutterDelete', s:red[1], s:none, s:none)
-call s:hi('GitGutterChangeDelete', s:red[1], s:none, s:none)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

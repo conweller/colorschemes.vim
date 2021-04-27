@@ -18,7 +18,7 @@ let s:none = "NONE"
 let s:bold = "BOLD"
 let s:bold_reverse = "BOLD,REVERSE"
 let s:undercurl = "UNDERCURL"
-let s:reverse = "reverse"
+let s:reverse = "REVERSE"
 let s:italic = "ITALIC"
 let s:underline = "UNDERLINE"
 let s:bold_underline = "BOLD,UNDERLINE"
@@ -37,46 +37,43 @@ let s:purple = [5, 13]
 let s:cyan = [6, 14]
 " }}}
 " General: {{{
-call s:hi("Search", s:fg[0], s:blue[1], s:bold)
-call s:hi("ModeMsg", s:fg[1], s:none, s:bold)
-call s:hi("MsgArea", s:fg[1], s:none, s:none)
+call s:hi("Search", s:fg[0], s:cyan[1], s:bold)
+call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
 call s:hi("Normal", s:fg[0], s:none, s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[0], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
-hi! link TermCursor Cursor
-call s:hi("TermCursorNC", s:none, s:bg[0], s:none)
+call s:hi("TermCursor", s:fg[1], s:none, s:reverse)
+call s:hi("TermCursorNC", s:fg[0], s:none, s:underline)
 call s:hi("LineNr", s:bg[1], s:none, s:none)
-call s:hi("FoldColumn", s:red[1], s:none, s:none)
+call s:hi("FoldColumn", s:red[0], s:none, s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
 call s:hi("QuickFixLine", s:blue[0], s:none, s:bold_reverse)
-call s:hi("CursorLineNr", s:bg[1], s:none, s:none)
+call s:hi("CursorLineNr", s:fg[1], s:bg[0], s:bold)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("VertSplit", s:bg[1], s:none, s:none)
-call s:hi('MsgSeparator', s:bg[1], s:none, s:underline)
-call s:hi("Folded", s:fg[1], s:none, s:italic)
+call s:hi("Folded", s:bg[1], s:none, s:italic)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:fg[0], s:none, s:bold_underline)
-call s:hi('Visual', s:none, s:bg[1], s:none)
+call s:hi('Visual', s:none, s:blue[1], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
 hi! link WarningMsg ErrorMsg
 
-call s:hi('IncSearch',s:fg[0], s:green[1], s:bold)
-call s:hi('Substitute',s:red[1], s:none, s:bold_reverse)
-call s:hi('MoreMsg',s:bg[0], s:blue[1], s:bold_underline)
+call s:hi('IncSearch', s:fg[0], s:yellow[1], s:bold_underline)
+call s:hi('MoreMsg',s:bg[0], s:blue[0], s:bold_underline)
 
 call s:hi('WildMenu', s:bg[0], s:fg[0], s:bold)
 call s:hi("NonText", s:bg[1], s:none, s:none)
 call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[0], s:none)
-call s:hi('PmenuSel', s:fg[0], s:bg[1], s:none)
+call s:hi('PmenuSel', s:blue[0], s:none, s:bold_reverse)
 call s:hi('PmenuSbar', s:none, s:none, s:none)
 call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
 
-call s:hi('MatchParen', s:fg[0], s:fg[1], s:none)
+call s:hi('MatchParen', s:fg[0], s:none, s:bold_underline)
 if has("spell")
 
   if has('nvim')
@@ -101,14 +98,14 @@ call s:hi('FennelSymbol', s:fg[0], s:bg[0], s:none)
 hi! link FennelSpecialForm Keyword
 hi! link FennelKeyword function
 call s:hi('mdDefinition', s:cyan[0], s:none, s:bold)
-call s:hi('mdCode', s:purple[0], s:none, s:none)
+call s:hi('mdMath', s:cyan[0], s:none, s:none)
 call s:hi('htmlLink', s:red[0], s:none, s:none)
-call s:hi('htmlbold', s:none, s:none, s:bold)
-call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
-call s:hi('htmlItalic', s:none, s:none, s:italic)
+call s:hi('htmlbold', s:yellow[0], s:none, s:bold)
+call s:hi('htmlBoldItalic', s:red[0], s:none, s:bold_italic)
+call s:hi('htmlItalic', s:purple[0], s:none, s:italic)
 
-call s:hi('Comment', s:fg[1], s:none, s:none)
-call s:hi('Conceal', s:blue[1], s:none, s:none)
+call s:hi('Comment', s:bg[1], s:none, s:none)
+call s:hi('Conceal', s:fg[1], s:none, s:none)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
 call s:hi('Directory', s:blue[0], s:none, s:bold)
@@ -116,29 +113,31 @@ call s:hi('Directory', s:blue[0], s:none, s:bold)
 call s:hi('Title', s:blue[0], s:none, s:bold)
 hi! link mdHeaderSymbol Title
 
-call s:hi("Keyword", s:blue[0], s:none, s:bold)
+call s:hi("Keyword", s:blue[0], s:none, s:none)
 hi! link Structure Keyword
-hi! link Statement Keyword
 hi! link Label Keyword
 hi! link Conditional Keyword
 hi! link Repeat Keyword
 hi! link Exception Keyword
 
-call s:hi("Question", s:purple[1], s:none, s:bold)
+call s:hi("Statement", s:fg[0], s:none, s:none)
 
-call s:hi("Operator", s:red[1], s:none, s:none)
+call s:hi("Question", s:purple[0], s:none, s:bold)
+
+call s:hi("Operator", s:red[0], s:none, s:none)
 hi! link Boolean Operator
 hi! link SpecialKey Operator
+hi! link Delimiter Operator
 
 call s:hi("Identifier", s:cyan[0], s:none, s:none)
 
 call s:hi("String", s:green[0], s:none, s:none)
 hi! link luaStringLongTag String
 
-call s:hi("Type", s:yellow[0], s:none, s:none)
+call s:hi("Type", s:fg[1], s:none, s:none)
 call s:hi("Function", s:cyan[0], s:none, s:none)
 
-call s:hi("Constant", s:cyan[0], s:none, s:none)
+call s:hi("Constant", s:yellow[0], s:none, s:none)
 hi! link Character Constant
 hi! link Number Constant
 hi! link Float Constant
@@ -150,7 +149,7 @@ hi! link Define PreProc
 hi! link PreCondit PreProc
 hi! link Special PreProc
 
-call s:hi("StorageClass", s:yellow[0], s:none, s:none)
+call s:hi("StorageClass", s:red[0], s:none, s:none)
 hi! link Typedef StorageClass
 " }}}
 " Terminal: {{{
@@ -175,13 +174,13 @@ if has('nvim')
 endif
 " }}}
 " Diffs: {{{
-call s:hi('DiffDelete', s:red[1], s:none, s:reverse)
+call s:hi('DiffDelete', s:red[0], s:red[1], s:none)
 hi! link DiffRemoved DiffDelete
-call s:hi('DiffAdd', s:blue[1], s:none, s:reverse)
+call s:hi('DiffAdd', s:green[0], s:green[1], s:none)
 hi! link DiffAdded DiffAdd
-call s:hi('DiffChange', s:none, s:bg[0], s:none)
+call s:hi('DiffChange', s:yellow[0], s:yellow[1], s:none)
 call s:hi('GitGutterChange', s:bg[0], s:none, s:none)
-call s:hi('DiffText', s:yellow[1], s:none, s:reverse)
+call s:hi('DiffText', s:purple[0], s:purple[1], s:none)
 " }}}
 " LSP: {{{
 call s:hi("LspDiagnosticsError", s:red[0], s:none, s:bold)
@@ -229,11 +228,23 @@ call s:hi("StatusLine", s:fg[0], s:bg[1], s:bold)
 hi! link StatusLineTermNC StatusLineNC
 hi! link StatusLineTerm StatusLine
 call s:hi("StatusLineNC", s:fg[1], s:bg[1], s:bold)
-call s:hi("StatusLineSep", s:bg[1], s:none, s:reverse)
 
 call s:hi("TablineSel", s:fg[0], s:bg[1], s:bold)
-call s:hi("Tabline", s:fg[1], s:bg[1], s:none)
-call s:hi("TablineFill", s:fg[1], s:bg[1], s:none)
+call s:hi("Tabline", s:fg[1], s:bg[1], s:bold)
+call s:hi("TablineFill", s:fg[1], s:bg[1], s:bold)
+
+" }}}
+" LSP: {{{
+
+call s:hi("LspErrorHighlight", s:none, s:none, s:underline)
+call s:hi("LspWarningHighlight", s:none, s:none, s:underline)
+call s:hi("LspInformationHighlight", s:none, s:none, s:underline)
+call s:hi("LspHintHighlight", s:none, s:none, s:underline)
+
+call s:hi("LspErrorText", s:red[0], s:none, s:bold)
+call s:hi("LspWarningText", s:yellow[0], s:none, s:bold)
+call s:hi("LspInformationText", s:yellow[0], s:none, s:bold)
+call s:hi("LspHintText", s:yellow[0], s:none, s:bold)
 
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

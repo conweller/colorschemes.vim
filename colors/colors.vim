@@ -257,7 +257,7 @@ hi! link FindrDir Directory
 call s:hi("MsgArea", s:fg[0], s:none, s:none)
 call s:hi("StatusLine", s:fg[0], s:bg[2], s:bold)
 call s:hi("StatusLineNC", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLineSep", s:bg[3], s:bg[2], s:none)
+call s:hi("StatusLineSep", s:background, s:bg[2], s:none)
 call s:hi("StatusLineOuter", s:fg[0], s:bg[2], s:bold)
 call s:hi("StatusLineInner", s:fg[1], s:bg[2], s:none)
 call s:hi("StatusLineInactive", s:fg[1], s:bg[2], s:none)

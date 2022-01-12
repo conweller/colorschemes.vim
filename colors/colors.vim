@@ -133,7 +133,7 @@ call s:hi('htmlUnderline', s:none, s:none, s:underline)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
 call s:hi('htmlItalic', s:none, s:none, s:italic)
 
-call s:hi('Comment', s:fg[3], s:none, s:none)
+call s:hi('Comment', s:fg[3], s:none, s:italic)
 call s:hi('Conceal', s:fg[3], s:none, s:none)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
@@ -279,22 +279,25 @@ call s:hi("TablineFill", s:fg[1], s:bg[2], s:none)
 
 " }}}
 " Telsecope: {{{
-hi! link TelescopeNormal NormalFloat
-hi! link TelescopeBorder NormalFloat
+hi! link TelescopeNormal CursorLine
+hi! link TelescopeBorder CursorLine
 hi! link TelescopeResultsNumber LineNr
 hi! link TelescopeResultsSpecialComment Comment
+hi! link TelescopePreviewNormal Normal
+hi! link TelescopePreviewBorder VertSplit
+call s:hi("TelescopePromptNormal", s:fg[0], s:bg[1], s:none)
+call s:hi("TelescopePromptBorder", s:fg[0], s:bg[1], s:none)
+call s:hi("TelescopePreviewBorder", s:bg[0], s:none, s:none)
 call s:hi("TelescopePromptCounter", s:fg[2], s:none, s:bold)
-call s:hi("TelescopePromptNormal", s:fg[0], s:bg[0], s:bold)
-call s:hi("TelescopePromptBorder", s:fg[0], s:bg[0], s:bold)
 call s:hi("TelescopePromptTitle", s:fg[0], s:bg[1], s:bold)
-call s:hi("TelescopeResultsTitle", s:fg[0], s:bg[1], s:bold )
+call s:hi("TelescopeTitle", s:fg[0], s:bg[0], s:bold)
 hi! link TelescopeMatching htmlUnderline
-hi! link TelescopeSelection CursorLine
+call s:hi("TelescopeSelection", s:none, s:bg[2], s:none)
 call s:hi("TelescopeMatching", s:none, s:none, s:underline)
 exe "hi! TelescopeMatching guisp=". s:fg[0]
 call s:hi("TelescopeMultiSelection", s:none, s:bg[3], s:underline)
 exe "hi! TelescopeMultiSelection guisp=". s:fg[3]
-call s:hi("TelescopeSelectionCaret", s:blue[0], s:bg[0], s:bold)
+call s:hi("TelescopeSelectionCaret", s:blue[0], s:bg[2], s:bold)
 call s:hi("TelescopePromptPrefix", s:blue[0], s:none, s:bold)
 call s:hi("TelescopeMultiIcon", s:red[0], s:none, s:bold)
 " }}}
@@ -581,6 +584,7 @@ hi! link DevIconSvelte Red
 hi! link DevIconProlog Yellow
 hi! link DevIconZig Yellow
 hi! link DevIconMint Green
+hi! link DevIconFennel Green
 
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

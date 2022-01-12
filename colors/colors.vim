@@ -281,6 +281,9 @@ call s:hi("TablineFill", s:fg[1], s:bg[2], s:none)
 " Telsecope: {{{
 hi! link TelescopeNormal NormalFloat
 hi! link TelescopeBorder NormalFloat
+hi! link TelescopeResultsNumber LineNr
+hi! link TelescopeResultsSpecialComment Comment
+call s:hi("TelescopePromptCounter", s:fg[2], s:none, s:bold)
 call s:hi("TelescopePromptNormal", s:fg[0], s:bg[0], s:bold)
 call s:hi("TelescopePromptBorder", s:fg[0], s:bg[0], s:bold)
 call s:hi("TelescopePromptTitle", s:fg[0], s:bg[1], s:bold)

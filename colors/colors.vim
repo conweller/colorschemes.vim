@@ -51,7 +51,7 @@ let  s:red     =  ["#FF8665",  "#D8502C",  "#A03000",  "#3A1000"]
 let  s:green   =  ["#00D83D",  "#00AF32",  "#0D6700",  "#083301"]
 let  s:yellow  =  ["#D9B000",  "#B08E00",  "#6B5600",  "#251D00"]
 let  s:blue    =  ["#6CB8FA",  "#2B9AFA",  "#284CB2",  "#192443"]
-let  s:purple  =  ["#DB8EFF",  "#BD30FF",  "#613792",  "#2E0067"]
+let  s:purple  =  ["#DB8EFF",  "#A951D2",  "#613792",  "#2E0067"]
 let  s:cyan    =  ["#00E0DD",  "#00C3C0",  "#005F61",  "#002C2D"]
 endif
 " }}}
@@ -280,7 +280,11 @@ call s:hi("TablineFill", s:fg[1], s:bg[2], s:none)
 " }}}
 " Telsecope: {{{
 hi! link TelescopeNormal NormalFloat
-call s:hi("TelescopeBorder", s:fg[0], s:bg[1], s:bold)
+hi! link TelescopeBorder NormalFloat
+call s:hi("TelescopePromptNormal", s:fg[0], s:bg[0], s:bold)
+call s:hi("TelescopePromptBorder", s:fg[0], s:bg[0], s:bold)
+call s:hi("TelescopePromptTitle", s:fg[0], s:bg[1], s:bold)
+call s:hi("TelescopeResultsTitle", s:fg[0], s:bg[1], s:bold )
 hi! link TelescopeMatching htmlUnderline
 hi! link TelescopeSelection CursorLine
 call s:hi("TelescopeMatching", s:none, s:none, s:underline)

@@ -45,7 +45,7 @@ let  s:purple  =  ["#690069",  "#A400A4", "#C18BFF",  "#F2E7FF"]
 let  s:cyan    =  ["#004F4E",  "#009290", "#3CCDD4",  "#D2F6F8"]
 else
   let s:background = "#000000"
-let  s:bg      =  ["#1A1A1A",  "#242424",  "#2E2E2E",  "#323232"]
+let  s:bg      =  ["#1A1A1A",  "#242424",  "#2E2E2E",  "#3D3D3D"]
 let  s:fg      =  ["#FFFFFF",  "#BFBFBF",  "#AAAAAA",  "#A5A5A5"]
 let  s:red     =  ["#FF8665",  "#D8502C",  "#A03000",  "#3A1000"]
 let  s:green   =  ["#00D83D",  "#00AF32",  "#0D6700",  "#083301"]
@@ -69,12 +69,12 @@ call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
 call s:hi("FoldColumn", s:bg[2], s:none, s:none)
 call s:hi("ColorColumn", s:none, s:bg[0], s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
-call s:hi("QuickFixLine", s:fg[0], s:blue[2], s:none)
+call s:hi("QuickFixLine", s:none, s:bg[1], s:none)
 call s:hi("LineNr", s:fg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[0], s:none, s:bold)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("VertSplit", s:bg[3], s:background, s:none)
+call s:hi("VertSplit", s:bg[3], s:none, s:none)
 call s:hi("FloatBorder", s:bg[3], s:none, s:none)
 call s:hi("Folded", s:fg[2], s:none, s:italic)
 call s:hi("Todo", s:fg[0], s:red[2], s:bold)
@@ -126,14 +126,14 @@ call s:hi("FennelSymbol", s:fg[0], s:none, s:none)
 call s:hi("vimUserFunc", s:fg[0], s:none, s:none)
 hi! link FennelKeyword function
 call s:hi('mdDefinition', s:none, s:none, s:bold)
-call s:hi('mdDone', s:fg[0], s:green[2], s:bold)
+call s:hi('mdDone', s:fg[0], s:bg[3], s:bold)
 call s:hi('htmlLink', s:blue[0], s:none, s:underline)
 call s:hi('htmlbold', s:none, s:none, s:bold)
 call s:hi('htmlUnderline', s:none, s:none, s:underline)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
 call s:hi('htmlItalic', s:none, s:none, s:italic)
 
-call s:hi('Comment', s:fg[3], s:none, s:italic)
+call s:hi('Comment', s:fg[3], s:none, s:none)
 call s:hi('Conceal', s:fg[3], s:none, s:none)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
@@ -148,7 +148,7 @@ call s:hi('htmlH5',                             s:green[0],  s:none,       s:bol
 call s:hi('htmlH6',                             s:cyan[0],   s:none,       s:bold)
 " hi! link mdHeaderSymbol htmlH1
 
-call s:hi("Keyword", s:blue[0], s:none, s:bold)
+call s:hi("Keyword", s:blue[0], s:none, s:none)
 hi! link Structure Keyword
 hi! link Label Keyword
 hi! link Conditional Keyword
@@ -191,28 +191,28 @@ hi! link Typedef StorageClass
 " Terminal: {{{
 hi! link Terminal Normal
 
-" if has('nvim')
-"   let g:terminal_color_0 = s:fg[0]
-"   let g:terminal_color_1 = s:red[0]
-"   let g:terminal_color_2 = s:green[0]
-"   let g:terminal_color_3 = s:yellow[0]
-"   let g:terminal_color_4 = s:blue[0]
-"   let g:terminal_color_5 = s:purple[0]
-"   let g:terminal_color_6 = s:cyan[0]
-"   let g:terminal_color_7 = s:bg[2]
-"   let g:terminal_color_8 = s:fg[2]
-"   let g:terminal_color_9 = s:red[2]
-"   let g:terminal_color_10 = s:green[2]
-"   let g:terminal_color_11 = s:yellow[2]
-"   let g:terminal_color_12 = s:blue[2]
-"   let g:terminal_color_13 = s:purple[2]
-"   let g:terminal_color_14 = s:cyan[2]
-"   let g:terminal_color_15 = s:bg[0]
-" endif
+if has('nvim')
+  let g:terminal_color_0 = s:fg[0]
+  let g:terminal_color_1 = s:red[0]
+  let g:terminal_color_2 = s:green[0]
+  let g:terminal_color_3 = s:yellow[0]
+  let g:terminal_color_4 = s:blue[0]
+  let g:terminal_color_5 = s:purple[0]
+  let g:terminal_color_6 = s:cyan[0]
+  let g:terminal_color_7 = s:bg[2]
+  let g:terminal_color_8 = s:fg[2]
+  let g:terminal_color_9 = s:red[2]
+  let g:terminal_color_10 = s:green[2]
+  let g:terminal_color_11 = s:yellow[2]
+  let g:terminal_color_12 = s:blue[2]
+  let g:terminal_color_13 = s:purple[2]
+  let g:terminal_color_14 = s:cyan[2]
+  let g:terminal_color_15 = s:bg[0]
+endif
 
 " }}}
 " Diffs: {{{
-call s:hi('DiffDelete', s:red[0], s:red[3], s:none)
+call s:hi('DiffDelete', s:red[1], s:red[3], s:none)
 hi! link DiffRemoved DiffDelete
 call s:hi('DiffAdd', s:green[0], s:green[3], s:none)
 hi! link DiffAdded DiffAdd
@@ -264,10 +264,10 @@ hi! link FindrDir Directory
 
 call s:hi("MsgArea", s:fg[0], s:none, s:none)
 call s:hi("StatusLine", s:fg[0], s:bg[2], s:bold)
-call s:hi("StatusLineNC", s:fg[0], s:bg[2], s:none)
+call s:hi("StatusLineNC", s:fg[0], s:bg[2], s:bold)
 call s:hi("StatusLineOuter", s:fg[0], s:bg[2], s:bold)
-call s:hi("StatusLineInner", s:fg[1], s:bg[2], s:none)
-call s:hi("StatusLineInactive", s:fg[1], s:bg[2], s:none)
+call s:hi("StatusLineInner", s:fg[3], s:bg[2], s:none)
+call s:hi("StatusLineInactive", s:fg[3], s:bg[2], s:none)
 
 hi! link StatusLineTermNC StatusLineNC
 hi! link StatusLineTerm StatusLine
@@ -279,26 +279,27 @@ call s:hi("TablineFill", s:fg[1], s:bg[2], s:none)
 
 " }}}
 " Telsecope: {{{
-hi! link TelescopeNormal CursorLine
-hi! link TelescopeBorder CursorLine
+hi! link TelescopeNormal Normal
+hi! link TelescopeResultsNormal CursorLine
 hi! link TelescopeResultsNumber LineNr
 hi! link TelescopeResultsSpecialComment Comment
-hi! link TelescopePreviewNormal Normal
-hi! link TelescopePreviewBorder VertSplit
-call s:hi("TelescopePromptNormal", s:fg[0], s:bg[1], s:none)
-call s:hi("TelescopePromptBorder", s:fg[0], s:bg[1], s:none)
-call s:hi("TelescopePreviewBorder", s:bg[0], s:none, s:none)
+call s:hi("TelescopePromptNormal", s:fg[0], s:bg[2], s:none)
+call s:hi("TelescopeResultsBorder", s:bg[0], s:bg[0], s:none)
+call s:hi("TelescopePromptBorder", s:bg[2], s:bg[2], s:none)
 call s:hi("TelescopePromptCounter", s:fg[2], s:none, s:bold)
-call s:hi("TelescopePromptTitle", s:fg[0], s:bg[1], s:bold)
-call s:hi("TelescopeTitle", s:fg[0], s:bg[0], s:bold)
+call s:hi("TelescopePromptTitle", s:fg[0], s:bg[2], s:bold)
+call s:hi("TelescopePreviewTitle", s:fg[0], s:bg[2], s:bold)
+call s:hi("TelescopePreviewBorder", s:bg[2], s:background, s:bold)
+call s:hi("TelescopeResultsTitle", s:fg[0], s:bg[0], s:bold)
 hi! link TelescopeMatching htmlUnderline
+hi! link TelescopePreviewLine CursorLine
 call s:hi("TelescopeSelection", s:none, s:bg[2], s:none)
 call s:hi("TelescopeMatching", s:none, s:none, s:underline)
 exe "hi! TelescopeMatching guisp=". s:fg[0]
 call s:hi("TelescopeMultiSelection", s:none, s:bg[3], s:underline)
 exe "hi! TelescopeMultiSelection guisp=". s:fg[3]
-call s:hi("TelescopeSelectionCaret", s:blue[0], s:bg[2], s:bold)
-call s:hi("TelescopePromptPrefix", s:blue[0], s:none, s:bold)
+call s:hi("TelescopeSelectionCaret", s:fg[0], s:bg[2], s:bold)
+call s:hi("TelescopePromptPrefix", s:fg[0], s:none, s:bold)
 call s:hi("TelescopeMultiIcon", s:red[0], s:none, s:bold)
 " }}}
 " Which-Key: {{{
@@ -330,11 +331,11 @@ hi! link NeorgMarkupInlineComment Comment
 " Org: {{{
 call s:hi("OrgDone", s:fg[0], s:green[2], s:bold)
 hi! link OrgTodo Todo
-hi! link OrgHeadlineLevel1 htmlH1
-hi! link OrgHeadlineLevel2 htmlH2
-hi! link OrgHeadlineLevel3 htmlH3
-hi! link OrgHeadlineLevel4 htmlH4
-hi! link OrgHeadlineLevel5 htmlH5
+hi! link OrgHeading1 htmlH1
+hi! link OrgHeading2 htmlH2
+hi! link OrgHeading3 htmlH3
+hi! link OrgHeading4 htmlH4
+hi! link OrgHeading5 htmlH5
 " }}}
 " CSV: {{{
 call s:hi("CSVColumnHeaderOdd", s:fg[0], s:none, s:bold_underline)
@@ -388,203 +389,5 @@ call s:hi("TroubleCount", s:fg[0], s:yellow[2], s:bold)
 " Lir: {{{
 hi! link LirDir Directory
 hi! link LirFolderNode Directory
-" }}}
-" Devicon: {{{
-call s:hi("Purple", s:purple[1], s:none, s:none)
-call s:hi("Blue", s:blue[1], s:none, s:none)
-call s:hi("Yellow", s:yellow[1], s:none, s:none)
-call s:hi("Green", s:green[1], s:none, s:none)
-call s:hi("Red", s:red[1], s:none, s:none)
-call s:hi("Cyan", s:cyan[1], s:none, s:none)
-call s:hi("Grey", s:fg[3], s:none, s:none)
-call s:hi("Black", s:fg[0], s:none, s:none)
-
-hi! link DevIconGruntfile yellow
-hi! link DevIconGulpfile Red
-hi! link DevIconDropbox Cyan
-hi! link DevIconXls Green
-hi! link DevIconDoc Blue
-hi! link DevIconPpt Yellow
-hi! link DevIconXml Yellow
-hi! link DevIconWebpack Cyan
-hi! link DevIconSettingsJson Purple
-hi! link DevIconCs Green
-hi! link DevIconProcfile Cyan
-hi! link DevIconSvg Yellow
-hi! link DevIconBashProfile Green
-hi! link DevIconBashrc Green
-hi! link DevIconBabelrc Yellow
-hi! link DevIconDsStore Cyan
-hi! link DevIconGitLogo Yellow
-hi! link DevIconGitAttributes Grey
-hi! link DevIconGitConfig Grey
-hi! link DevIconGitIgnore Grey
-hi! link DevIconGitModules Grey
-hi! link DevIconGitCommit Grey
-hi! link DevIconLicense Yellow
-hi! link DevIconGitlabCI Purple
-hi! link DevIconGvimrc Green
-hi! link DevIconNPMIgnore Red
-hi! link DevIconVimrc Green
-hi! link DevIconZshrc Green
-hi! link DevIconZshenv Green
-hi! link DevIconZshprofile Green
-hi! link DevIconDockerfile Blue
-hi! link DevIconGemfile Red
-hi! link DevIconVagrantfile Blue
-hi! link DevIconAi Yellow
-hi! link DevIconAwk Grey
-hi! link DevIconBash Green
-hi! link DevIconBat Green
-hi! link DevIconBmp Purple
-hi! link DevIconC Blue
-hi! link DevIconCPlusPlus Blue
-" hi! link DevIconClojure Green
-hi! link DevIconClojureC Green
-hi! link DevIconClojureJS Green
-hi! link DevIconCMakeLists Grey
-hi! link DevIconCMake Grey
-hi! link DevIconCobol Blue
-hi! link DevIconCoffee Yellow
-hi! link DevIconConf Grey
-hi! link DevIconConfigRu Grey
-hi! link DevIconCp Cyan
-hi! link DevIconCpp Cyan
-hi! link DevIconCrystal Black
-hi! link DevIconCsh Green
-hi! link DevIconCson Green
-hi! link DevIconCss Purple
-hi! link DevIconCxx Cyan
-hi! link DevIconD Green
-hi! link DevIconDart Cyan
-hi! link DevIconDb Grey
-hi! link DevIconDiff Red
-hi! link DevIconDump Grey
-hi! link DevIconEdn Cyan
-hi! link DevIconEex Purple
-hi! link DevIconEjs Yellow
-hi! link DevIconElm Cyan
-hi! link DevIconErl Purple
-hi! link DevIconEx Purple
-hi! link DevIconExs Purple
-hi! link DevIconFsharp Cyan
-hi! link DevIconFavicon Yellow
-hi! link DevIconFish Green
-hi! link DevIconFs Cyan
-hi! link DevIconFsi Cyan
-hi! link DevIconFsscript Cyan
-hi! link DevIconFsx Cyan
-hi! link DevIconGemspec Red
-hi! link DevIconGif Purple
-hi! link DevIconGo Cyan
-hi! link DevIconH Purple
-hi! link DevIconHaml Grey
-hi! link DevIconHbs Yellow
-hi! link DevIconHeex Purple
-hi! link DevIconHh Purple
-hi! link DevIconHpp Purple
-hi! link DevIconHrl Purple
-hi! link DevIconHs Purple
-hi! link DevIconHtm Red
-hi! link DevIconHtml Red
-hi! link DevIconErb Red
-hi! link DevIconHxx Purple
-hi! link DevIconIco Grey
-hi! link DevIconIni Cyan
-hi! link DevIconJava Red
-hi! link DevIconJl Purple
-hi! link DevIconJpeg Blue
-hi! link DevIconJpg Blue
-hi! link DevIconJs Yellow
-hi! link DevIconJson Yellow
-hi! link DevIconJsx Yellow
-hi! link DevIconKsh Green
-hi! link DevIconLeex Purple
-hi! link DevIconLess Blue
-hi! link DevIconLhs Purple
-hi! link DevIconLua Cyan
-hi! link DevIconMakefile Green
-hi! link DevIconMarkdown Cyan
-hi! link DevIconMd Cyan
-hi! link DevIconMdx Cyan
-hi! link DevIconMixLock Purple
-hi! link DevIconMjs Yellow
-hi! link DevIconMl Red
-hi! link DevIconMli Red
-hi! link DevIconMustache Red
-hi! link DevIconNix Cyan
-hi! link DevIconNodeModules Yellow
-hi! link DevIconPhp Purple
-hi! link DevIconPl Cyan
-hi! link DevIconPm Cyan
-hi! link DevIconPng Blue
-hi! link DevIconPp Yellow
-hi! link DevIconEpp Yellow
-hi! link DevIconPromptPs1 Grey
-hi! link DevIconPsb Cyan
-hi! link DevIconPsd Cyan
-hi! link DevIconPy Yellow
-hi! link DevIconPyc Yellow
-hi! link DevIconPyd Yellow
-hi! link DevIconPyo Yellow
-hi! link DevIconR Green
-hi! link DevIconRake Red
-hi! link DevIconRakefile Red
-hi! link DevIconRb Red
-hi! link DevIconBrewfile Yellow
-hi! link DevIconRlib Yellow
-hi! link DevIconRmd Cyan
-hi! link DevIconRproj Green
-hi! link DevIconRs Yellow
-hi! link DevIconRss Yellow
-hi! link DevIconSass Blue
-hi! link DevIconScala Red
-hi! link DevIconScss Blue
-hi! link DevIconSh Green
-hi! link DevIconSig Yellow
-hi! link DevIconSlim Red
-hi! link DevIconSln Purple
-hi! link DevIconSml Red
-hi! link DevIconSql Cyan
-hi! link DevIconStyl Green
-hi! link DevIconSuo Red
-hi! link DevIconSwift Yellow
-hi! link DevIconTor Purple
-hi! link DevIconTxt Grey
-hi! link DevIconTex Green
-hi! link DevIconToml Cyan
-hi! link DevIconTs Cyan
-hi! link DevIconTsx Cyan
-hi! link DevIconTwig Green
-hi! link DevIconVim Green
-hi! link DevIconVue Green
-hi! link DevIconWebmanifest Yellow
-hi! link DevIconWebp Purple
-hi! link DevIconXcPlayground Red
-hi! link DevIconXul Red
-hi! link DevIconYaml Cyan
-hi! link DevIconYml Cyan
-hi! link DevIconZsh Green
-hi! link DevIconTerminal Green
-hi! link DevIconPdf Red
-hi! link DevIconKotlin Yellow
-hi! link DevIconGDScript Cyan
-hi! link DevIconTextScene Purple
-hi! link DevIconGodotProject Cyan
-hi! link DevIconTextResource Green
-hi! link DevIconBinaryGLTF Yellow
-hi! link DevIconImportConfiguration Grey
-hi! link DevIconMaterial Purple
-hi! link DevIconOpenTypeFont Grey
-hi! link DevIconConfiguration Grey
-hi! link DevIconPackedResource Grey
-hi! link DevIconDesktopEntry Blue
-hi! link DevIconOPUS Yellow
-hi! link DevIconSvelte Red
-hi! link DevIconProlog Yellow
-hi! link DevIconZig Yellow
-hi! link DevIconMint Green
-hi! link DevIconFennel Green
-
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

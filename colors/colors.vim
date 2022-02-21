@@ -29,13 +29,16 @@ let s:underline_nocombine = "UNDERLINE,NOCOMBINE"
 let s:italic_underline_nocombine = "ITALIC,UNDERLINE,NOCOMBINE"
 let s:bold_underline = "BOLD,UNDERLINE"
 let s:bold_italic = "BOLD,ITALIC"
+let s:bold_italic_nocombine = "BOLD,ITALIC,NOCOMBINE"
+let s:italic_nocombine = "ITALIC,NOCOMBINE"
 let s:italic_underline = "ITALIC,UNDERLINE"
+let s:italic_underline_nocombine = "ITALIC,UNDERLINE,NOCOMBINE"
 let s:bold_italic_underline = "BOLD,ITALIC,UNDERLINE"
 " }}}
 " Colors: {{{
 if &bg == 'light'
   let s:background = "#FFFFFF"
-let  s:bg      =  ["#F2F2F2",  "#EAEAEA",  "#DFDFDF",  "#C9C9C9"]
+let  s:bg      =  ["#F4F4F4",  "#EAEAEA",  "#DFDFDF",  "#C9C9C9"]
 let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#515151"]
 let  s:red     =  ["#981200",  "#B51500", "#FF8C61",  "#FFE7DE"]
 let  s:green   =  ["#305900",  "#4E9100", "#53CD43",  "#CDFFC7"]
@@ -45,7 +48,7 @@ let  s:purple  =  ["#690069",  "#A400A4", "#C18BFF",  "#F2E7FF"]
 let  s:cyan    =  ["#004F4E",  "#009290", "#3CCDD4",  "#D2F6F8"]
 else
   let s:background = "#000000"
-let  s:bg      =  ["#1A1A1A",  "#242424",  "#2E2E2E",  "#3D3D3D"]
+let  s:bg      =  ["#181818",  "#242424",  "#2E2E2E",  "#3D3D3D"]
 let  s:fg      =  ["#FFFFFF",  "#BFBFBF",  "#AAAAAA",  "#A5A5A5"]
 let  s:red     =  ["#FF8665",  "#D8502C",  "#A03000",  "#3A1000"]
 let  s:green   =  ["#00D83D",  "#00AF32",  "#0D6700",  "#083301"]
@@ -56,12 +59,12 @@ let  s:cyan    =  ["#00E0DD",  "#00C3C0",  "#005F61",  "#002C2D"]
 endif
 " }}}
 " General: {{{
-call s:hi("Search", s:fg[0], s:purple[2], s:bold_nocombine)
-call s:hi('IncSearch', s:fg[0], s:green[2], s:bold_nocombine)
-hi! link TextYankPost Search
+call s:hi("Search", s:fg[0], s:bg[3], s:bold_nocombine)
+call s:hi('IncSearch', s:fg[0], s:yellow[2], s:bold_nocombine)
+hi! link TextYankPost IncSearch
 hi! link Substitute IncSearch
 call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
-call s:hi("Normal", s:fg[0], s:none, s:none)
+call s:hi("Normal", s:fg[0], s:background, s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[1], s:none)
 call s:hi("Cursor", s:background, s:fg[0], s:nocombine)
 call s:hi("TermCursor", s:background, s:fg[0], s:none)
@@ -70,13 +73,13 @@ call s:hi("FoldColumn", s:bg[2], s:none, s:none)
 call s:hi("ColorColumn", s:none, s:bg[0], s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
 call s:hi("QuickFixLine", s:none, s:bg[1], s:none)
-call s:hi("LineNr", s:fg[3], s:none, s:none)
+call s:hi("LineNr", s:bg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[0], s:none, s:bold)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("VertSplit", s:bg[3], s:none, s:none)
 call s:hi("FloatBorder", s:bg[3], s:none, s:none)
-call s:hi("Folded", s:fg[2], s:none, s:italic)
+call s:hi("Folded", s:fg[3], s:none, s:italic)
 call s:hi("Todo", s:fg[0], s:red[2], s:bold)
 call s:hi('Visual', s:none, s:blue[3], s:none)
 hi! link VisualNOS Visual
@@ -96,7 +99,7 @@ call s:hi('PmenuSel', s:background, s:fg[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[3], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[2], s:none)
 
-call s:hi('MatchParen', s:fg[0], s:blue[2], s:bold)
+call s:hi('MatchParen', s:fg[0], s:bg[3], s:bold)
 
 if has("spell")
 
@@ -127,13 +130,13 @@ call s:hi("vimUserFunc", s:fg[0], s:none, s:none)
 hi! link FennelKeyword function
 call s:hi('mdDefinition', s:none, s:none, s:bold)
 call s:hi('mdDone', s:fg[0], s:bg[3], s:bold)
-call s:hi('htmlLink', s:blue[0], s:none, s:underline)
+call s:hi('htmlLink', s:blue[0], s:none, s:none)
 call s:hi('htmlbold', s:none, s:none, s:bold)
 call s:hi('htmlUnderline', s:none, s:none, s:underline)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
 call s:hi('htmlItalic', s:none, s:none, s:italic)
 
-call s:hi('Comment', s:fg[3], s:none, s:none)
+call s:hi('Comment', s:fg[3], s:none, s:italic)
 call s:hi('Conceal', s:fg[3], s:none, s:none)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
@@ -148,14 +151,13 @@ call s:hi('htmlH5',                             s:green[0],  s:none,       s:bol
 call s:hi('htmlH6',                             s:cyan[0],   s:none,       s:bold)
 " hi! link mdHeaderSymbol htmlH1
 
-call s:hi("Keyword", s:blue[0], s:none, s:none)
+call s:hi("Keyword", s:blue[0], s:none, s:bold)
 hi! link Structure Keyword
 hi! link Label Keyword
 hi! link Conditional Keyword
 hi! link Repeat Keyword
 hi! link Exception Keyword
-
-call s:hi("Statement", s:blue[0], s:none, s:none)
+hi! link Statement Keyword
 
 call s:hi("Question", s:purple[0], s:none, s:bold)
 
@@ -201,12 +203,12 @@ if has('nvim')
   let g:terminal_color_6 = s:cyan[0]
   let g:terminal_color_7 = s:bg[2]
   let g:terminal_color_8 = s:fg[2]
-  let g:terminal_color_9 = s:red[2]
-  let g:terminal_color_10 = s:green[2]
-  let g:terminal_color_11 = s:yellow[2]
-  let g:terminal_color_12 = s:blue[2]
-  let g:terminal_color_13 = s:purple[2]
-  let g:terminal_color_14 = s:cyan[2]
+  let g:terminal_color_9 = s:red[1]
+  let g:terminal_color_10 = s:green[1]
+  let g:terminal_color_11 = s:yellow[1]
+  let g:terminal_color_12 = s:blue[1]
+  let g:terminal_color_13 = s:purple[1]
+  let g:terminal_color_14 = s:cyan[1]
   let g:terminal_color_15 = s:bg[0]
 endif
 
@@ -214,10 +216,10 @@ endif
 " Diffs: {{{
 call s:hi('DiffDelete', s:red[1], s:red[3], s:none)
 hi! link DiffRemoved DiffDelete
-call s:hi('DiffAdd', s:green[0], s:green[3], s:none)
+call s:hi('DiffAdd', s:none, s:green[3], s:none)
 hi! link DiffAdded DiffAdd
-call s:hi('DiffChange', s:fg[2], s:bg[1], s:none)
-call s:hi('DiffText', s:yellow[0], s:yellow[3], s:none)
+call s:hi('DiffChange', s:none, s:bg[1], s:none)
+call s:hi('DiffText', s:none, s:yellow[3], s:none)
 " " }}}
 " LSP: {{{
 hi! link LspCodeLens NonText
@@ -231,21 +233,18 @@ call s:hi("DiagnosticVirtualTextWarn", s:yellow[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextInfo", s:cyan[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextHint", s:cyan[0], s:none, s:none)
 
-call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:underline)
+call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineError guisp='.s:red[1]
-call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:underline)
+call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineWarn guisp='.s:yellow[1]
-call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:underline)
+call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineInfo guisp='.s:cyan[1]
-call s:hi("DiagnosticUnderlineHint", s:none, s:cyan[3], s:underline)
+call s:hi("DiagnosticUnderlineHint", s:none, s:cyan[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineHint guisp='.s:cyan[1]
 
-call s:hi("LspReferenceText", s:none, s:green[3], s:underline)
-call s:hi("LspReferenceWrite", s:none, s:green[3], s:underline)
-call s:hi("LspReferenceRead", s:none, s:purple[3], s:underline)
-exe "hi! LspReferenceText guisp=". s:green[2]
-exe "hi! LspReferenceWrite guisp=". s:green[2]
-exe "hi! LspReferenceRead guisp=". s:purple[2]
+call s:hi("LspReferenceText", s:none, s:bg[1], s:none)
+call s:hi("LspReferenceWrite", s:none, s:bg[1], s:none)
+call s:hi("LspReferenceRead", s:none, s:bg[1], s:none)
 
 " }}}
 " IndentBlankLine: {{{
@@ -279,26 +278,19 @@ call s:hi("TablineFill", s:fg[1], s:bg[2], s:none)
 
 " }}}
 " Telsecope: {{{
-hi! link TelescopeNormal Normal
-hi! link TelescopeResultsNormal CursorLine
 hi! link TelescopeResultsNumber LineNr
+hi! link TelescopePromptCounter LineNr
 hi! link TelescopeResultsSpecialComment Comment
-call s:hi("TelescopePromptNormal", s:fg[0], s:bg[2], s:none)
-call s:hi("TelescopeResultsBorder", s:bg[0], s:bg[0], s:none)
-call s:hi("TelescopePromptBorder", s:bg[2], s:bg[2], s:none)
-call s:hi("TelescopePromptCounter", s:fg[2], s:none, s:bold)
-call s:hi("TelescopePromptTitle", s:fg[0], s:bg[2], s:bold)
-call s:hi("TelescopePreviewTitle", s:fg[0], s:bg[2], s:bold)
-call s:hi("TelescopePreviewBorder", s:bg[2], s:background, s:bold)
-call s:hi("TelescopeResultsTitle", s:fg[0], s:bg[0], s:bold)
+hi! link TelescopeBorder FloatBorder
+call s:hi("TelescopeTitle", s:fg[3], s:none, s:bold)
 hi! link TelescopeMatching htmlUnderline
 hi! link TelescopePreviewLine CursorLine
-call s:hi("TelescopeSelection", s:none, s:bg[2], s:none)
-call s:hi("TelescopeMatching", s:none, s:none, s:underline)
+hi! link TelescopeSelection CursorLine
+call s:hi("TelescopeMatching", s:none, s:bg[2], s:bold_nocombine)
 exe "hi! TelescopeMatching guisp=". s:fg[0]
 call s:hi("TelescopeMultiSelection", s:none, s:bg[3], s:underline)
 exe "hi! TelescopeMultiSelection guisp=". s:fg[3]
-call s:hi("TelescopeSelectionCaret", s:fg[0], s:bg[2], s:bold)
+call s:hi("TelescopeSelectionCaret", s:fg[0], s:bg[0], s:bold)
 call s:hi("TelescopePromptPrefix", s:fg[0], s:none, s:bold)
 call s:hi("TelescopeMultiIcon", s:red[0], s:none, s:bold)
 " }}}
@@ -351,7 +343,7 @@ exe "hi! CSVColumnOdd guisp=". s:bg[1]
 " Gitsigns: {{{
 call s:hi("GitSignsAdd", s:green[1], s:none, s:bold)
 call s:hi("GitSignsDelete", s:red[1], s:none, s:bold)
-call s:hi("GitSignsChange", s:bg[1], s:none, s:bold)
+call s:hi("GitSignsChange", s:bg[3], s:none, s:bold)
 "
 " }}}
 " Cmp: {{{
@@ -371,12 +363,9 @@ call s:hi("LightspeedLabelDistant", s:cyan[0], s:none, s:bold_underline)
 call s:hi("LightspeedLabelDistantOverlapped", s:cyan[0], s:none, s:underline)
 " }}}
 " Hop: {{{
-call s:hi("HopNextKey", s:green[0], s:green[3], s:bold_underline_nocombine)
-call s:hi("HopNextKey1", s:purple[0], s:purple[3], s:bold_underline_nocombine)
-call s:hi("HopNextKey2", s:purple[0], s:purple[3], s:underline_nocombine)
-exe 'hi! HopNextKey guisp='.s:green[0]
-exe 'hi! HopNextKey1 guisp='.s:purple[0]
-exe 'hi! HopNextKey2 guisp='.s:purple[0]
+call s:hi("HopNextKey", s:fg[0], s:blue[2], s:bold_nocombine)
+call s:hi("HopNextKey1", s:fg[0], s:red[2], s:bold_nocombine)
+call s:hi("HopNextKey2", s:fg[0], s:red[2], s:nocombine)
 call s:hi("HopUnmatched", s:bg[3], s:none, s:none)
 call s:hi("HopCursor", s:none, s:none, s:none)
 " }}}

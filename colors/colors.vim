@@ -366,7 +366,7 @@ call s:hi("LightspeedLabelDistantOverlapped", s:cyan[0], s:none, s:underline)
 call s:hi("HopNextKey", s:fg[0], s:blue[2], s:bold_nocombine)
 call s:hi("HopNextKey1", s:fg[0], s:red[2], s:bold_nocombine)
 call s:hi("HopNextKey2", s:fg[0], s:red[2], s:nocombine)
-call s:hi("HopUnmatched", s:bg[3], s:none, s:none)
+call s:hi("HopUnmatched", s:bg[3], s:background, s:nocombine)
 call s:hi("HopCursor", s:none, s:none, s:none)
 " }}}
 " LspSignature: {{{

@@ -43,10 +43,10 @@ if &bg == 'light'
   let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#515151"]
   let  s:red     =  ["#981200",  "#D91900", "#FF8C61",  "#FFE7DE"]
   let  s:green   =  ["#305900",  "#5DAD00", "#53CD43",  "#CDFFC7"]
-  let  s:yellow  =  ["#674200",  "#C98700", "#D8C400",  "#F4F3A4"]
-  let  s:blue    =  ["#003E73",  "#00549B", "#78B3F1",  "#D7EAFD"]
-  let  s:purple  =  ["#690069",  "#A400A4", "#C18BFF",  "#F2E7FF"]
-  let  s:cyan    =  ["#004F4E",  "#009290", "#3CCDD4",  "#CAF8F1"]
+  let  s:yellow  =  ["#674200",  "#C98700", "#E7BA51",  "#F4F3A4"]
+  let  s:blue    =  ["#004D8E",  "#007EE8", "#78B3F1",  "#D9EBFD"]
+  let  s:purple  =  ["#872162",  "#D526D5", "#C18BFF",  "#F2E7FF"]
+  let  s:cyan    =  ["#00544C",  "#009290", "#3CCDD4",  "#CAF8F1"]
 else
   let s:background = "#000000"
   let  s:bg      =  ["#181818",  "#242424",  "#2E2E2E",  "#4B4B4B"]
@@ -78,8 +78,8 @@ call s:hi("LineNr", s:bg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[0], s:none, s:bold)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("VertSplit", s:fg[0], s:none, s:none)
-call s:hi("FloatBorder", s:fg[0], s:none, s:none)
+call s:hi("VertSplit", s:bg[3], s:none, s:none)
+call s:hi("FloatBorder", s:bg[3], s:none, s:none)
 call s:hi("Folded", s:fg[3], s:none, s:italic)
 call s:hi("Todo", s:fg[0], s:red[2], s:bold_nocombine)
 call s:hi('Visual', s:none, s:blue[3], s:none)
@@ -100,7 +100,7 @@ call s:hi('PmenuSel', s:background, s:fg[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[3], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[2], s:none)
 
-call s:hi('MatchParen', s:fg[0], s:bg[3], s:bold)
+call s:hi('MatchParen', s:fg[0], s:blue[2], s:bold)
 
 if has("spell")
 
@@ -131,7 +131,7 @@ call s:hi("vimUserFunc", s:fg[0], s:none, s:none)
 hi! link FennelKeyword function
 call s:hi('mdDefinition', s:none, s:none, s:bold)
 call s:hi('mdDone', s:fg[0], s:bg[3], s:bold)
-call s:hi('mdOperator', s:fg[3], s:none, s:none)
+call s:hi('mdOperator', s:fg[0], s:none, s:none)
 call s:hi('htmlStrikethrough', s:none, s:none, s:strikethrough)
 call s:hi('htmlLink', s:blue[0], s:none, s:none)
 call s:hi('htmlbold', s:none, s:none, s:bold)
@@ -154,7 +154,7 @@ call s:hi('htmlH5',                             s:green[0],  s:none,       s:bol
 call s:hi('htmlH6',                             s:cyan[0],   s:none,       s:bold)
 " hi! link mdHeaderSymbol htmlH1
 
-call s:hi("Keyword", s:blue[0], s:none, s:bold)
+call s:hi("Keyword", s:purple[0], s:none, s:bold)
 hi! link Structure Keyword
 hi! link Label Keyword
 hi! link Conditional Keyword
@@ -174,16 +174,16 @@ call s:hi("Identifier", s:cyan[0], s:none, s:none)
 call s:hi("String", s:green[0], s:none, s:none)
 hi! link luaStringLongTag String
 
-call s:hi("Type", s:cyan[0], s:none, s:none)
-call s:hi("Function", s:cyan[0], s:none, s:none)
+call s:hi("Function", s:blue[0], s:none, s:none)
 
 call s:hi("Constant", s:fg[0], s:none, s:none)
 
-call s:hi("Number", s:yellow[0], s:none, s:none)
+call s:hi("Number", s:cyan[0], s:none, s:none)
+hi! link Type Number
 hi! link Character Number
 hi! link Float Number
 
-call s:hi("PreProc", s:purple[0], s:none, s:none)
+call s:hi("PreProc", s:blue[0], s:none, s:none)
 hi! link Macro PreProc
 hi! link Include PreProc
 hi! link Define PreProc
@@ -231,10 +231,10 @@ call s:hi("DiagnosticWarn", s:yellow[0], s:none, s:bold)
 call s:hi("DiagnosticInfo", s:cyan[0], s:none, s:bold)
 call s:hi("DiagnosticHint", s:purple[0], s:none, s:bold)
 
-call s:hi("DiagnosticSignError", s:red[1], s:none, s:none)
-call s:hi("DiagnosticSignWarn", s:yellow[1], s:none, s:none)
-call s:hi("DiagnosticSignInfo", s:cyan[1], s:none, s:none)
-call s:hi("DiagnosticSignHint", s:purple[1], s:none, s:none)
+call s:hi("DiagnosticSignError", s:red[1], s:none, s:bold)
+call s:hi("DiagnosticSignWarn", s:yellow[1], s:none, s:bold)
+call s:hi("DiagnosticSignInfo", s:cyan[1], s:none, s:bold)
+call s:hi("DiagnosticSignHint", s:purple[1], s:none, s:bold)
 
 call s:hi("DiagnosticVirtualTextError", s:red[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextWarn", s:yellow[0], s:none, s:none)
@@ -270,20 +270,26 @@ hi! link FindrDir Directory
 " StatusLine: {{{
 
 call s:hi("MsgArea", s:fg[0], s:none, s:none)
-call s:hi("StatusLine", s:background, s:fg[0], s:bold)
-call s:hi("StatusLineNC", s:background, s:fg[0], s:bold)
-call s:hi("StatusLineOuter", s:background, s:fg[0], s:bold)
-call s:hi("StatusLineInner", s:bg[2], s:fg[0], s:none)
-call s:hi("StatusLineInactive", s:bg[2], s:fg[0], s:none)
-call s:hi("StatusLineMode", s:background, s:yellow[1], s:bold)
+call s:hi("StatusLine", s:fg[0], s:bg[1], s:bold)
+call s:hi("StatusLineNC", s:fg[0], s:bg[1], s:bold)
+call s:hi("StatusLineOuter", s:fg[0], s:bg[1], s:bold)
+call s:hi("StatusLineInner", s:fg[3], s:bg[1], s:none)
+call s:hi("StatusLineInactive", s:fg[2], s:bg[1], s:none)
+
+call s:hi("StatusLineModeN", s:background, s:yellow[1], s:bold)
+call s:hi("StatusLineModeC", s:background, s:purple[1], s:bold)
+call s:hi("StatusLineModeR", s:background, s:red[1], s:bold)
+call s:hi("StatusLineModeI", s:background, s:cyan[1], s:bold)
+call s:hi("StatusLineModeV", s:background, s:blue[1], s:bold)
+call s:hi("StatusLineModeT", s:background, s:green[1], s:bold)
 
 hi! link StatusLineTermNC StatusLineNC
 hi! link StatusLineTerm StatusLine
-call s:hi("MsgSeparator", s:fg[0], s:bg[2], s:none)
+call s:hi("MsgSeparator", s:background, s:fg[0], s:none)
 
-call s:hi("TablineSel", s:background, s:fg[3], s:bold)
-call s:hi("Tabline", s:fg[1], s:bg[2], s:none)
-call s:hi("TablineFill", s:fg[1], s:bg[2], s:none)
+call s:hi("TablineSel", s:fg[0], s:bg[1], s:bold)
+call s:hi("Tabline", s:fg[3], s:bg[1], s:none)
+call s:hi("TablineFill", s:fg[3], s:bg[1], s:none)
 
 " }}}
 " Telsecope: {{{
@@ -423,7 +429,7 @@ hi! link NotifyTRACEBody NotifyERRORBody
 hi! link TSStrong HtmlBold
 hi! link TSEmphasis HtmlItalic
 hi! link TSEmphasis HtmlItalic
-call s:hi("TSPunctSpecial", s:fg[3], s:none, s:none)
+call s:hi("TSPunctSpecial", s:fg[0], s:none, s:none)
 " }}}
 " Hlsearch: {{{
 hi! link HlSearchLens Search

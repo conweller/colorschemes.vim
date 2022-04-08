@@ -21,7 +21,7 @@ let s:bold_nocombine = "BOLD,NOCOMBINE"
 let s:strikethrough = "STRIKETHROUGH"
 let s:bold_underline_nocombine = "BOLD,UNDERLINE,NOCOMBINE"
 let s:bold_reverse = "BOLD,REVERSE"
-let s:undercurl = "UNDERCURL"
+let s:underline = "UNDERline"
 let s:reverse = "REVERSE"
 let s:italic = "ITALIC"
 let s:italic_reverse = "ITALIC,REVERSE"
@@ -40,13 +40,13 @@ let s:bold_italic_underline = "BOLD,ITALIC,UNDERLINE"
 if &bg == 'light'
   let s:background = "#FFFFFF"
   let  s:bg      =  ["#F4F4F4",  "#EAEAEA",  "#DFDFDF",  "#ADADAD"]
-  let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#515151"]
+  let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#656565"]
   let  s:red     =  ["#981200",  "#D91900", "#FF8C61",  "#FFE7DE"]
   let  s:green   =  ["#305900",  "#5DAD00", "#53CD43",  "#CDFFC7"]
   let  s:yellow  =  ["#674200",  "#C98700", "#E7BA51",  "#F4F3A4"]
   let  s:blue    =  ["#004D8E",  "#007EE8", "#78B3F1",  "#D9EBFD"]
   let  s:purple  =  ["#872162",  "#D526D5", "#C18BFF",  "#F2E7FF"]
-  let  s:cyan    =  ["#00544C",  "#009290", "#3CCDD4",  "#CAF8F1"]
+  let  s:cyan    =  ["#00585D",  "#009290", "#3CCDD4",  "#CAF8F1"]
 else
   let s:background = "#000000"
   let  s:bg      =  ["#181818",  "#242424",  "#2E2E2E",  "#4B4B4B"]
@@ -60,17 +60,17 @@ else
 endif
 " }}}
 " General: {{{
-call s:hi("Search", s:fg[0], s:bg[2], s:bold_nocombine)
+call s:hi("Search", s:fg[0], s:cyan[2], s:bold_nocombine)
 call s:hi('IncSearch', s:fg[0], s:yellow[2], s:bold_nocombine)
-call s:hi('TextYankPost', s:none, s:cyan[3], s:none)
+call s:hi('TextYankPost', s:none, s:blue[3], s:none)
 hi! link Substitute IncSearch
 call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
 call s:hi("Normal", s:fg[0], s:background, s:none)
 call s:hi("NormalFloat", s:fg[0], s:none, s:none)
 call s:hi("Cursor", s:background, s:fg[0], s:nocombine)
 call s:hi("TermCursor", s:background, s:fg[0], s:none)
-call s:hi("TermCursorNC", s:none, s:bg[1], s:none)
-call s:hi("FoldColumn", s:bg[2], s:none, s:none)
+call s:hi("TermCursorNC", s:none, s:bg[3], s:none)
+call s:hi("FoldColumn", s:bg[3], s:none, s:none)
 call s:hi("ColorColumn", s:none, s:bg[0], s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
 call s:hi("QuickFixLine", s:none, s:bg[1], s:none)
@@ -78,11 +78,10 @@ call s:hi("LineNr", s:bg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[0], s:none, s:bold)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("VertSplit", s:bg[3], s:none, s:none)
-call s:hi("FloatBorder", s:bg[3], s:none, s:none)
+call s:hi("WinSeparator", s:bg[3], s:none, s:none)
 call s:hi("Folded", s:fg[3], s:none, s:italic)
 call s:hi("Todo", s:fg[0], s:red[2], s:bold_nocombine)
-call s:hi('Visual', s:none, s:blue[3], s:none)
+call s:hi('Visual', s:fg[0], s:bg[2], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("Error", s:red[0], s:none, s:bold)
@@ -111,10 +110,10 @@ if has("spell")
     exe 'hi! SpellRare guisp='.s:blue[1]
   endif
 
-  call s:hi('SpellCap',   s:none, s:none, s:undercurl)
-  call s:hi('SpellLocal', s:none, s:none, s:undercurl)
-  call s:hi('SpellRare',  s:none, s:none, s:undercurl)
-  call s:hi('SpellBad',   s:none, s:none, s:undercurl)
+  call s:hi('SpellCap',   s:none, s:none, s:underline)
+  call s:hi('SpellLocal', s:none, s:none, s:underline)
+  call s:hi('SpellRare',  s:none, s:none, s:underline)
+  call s:hi('SpellBad',   s:none, s:none, s:underline)
 endif
 " }}}
 " Syntax: {{{
@@ -169,8 +168,6 @@ call s:hi("Boolean ", s:red[0], s:none, s:none)
 hi! link SpecialKey Boolean
 call s:hi("Delimiter", s:fg[0], s:none, s:none)
 
-call s:hi("Identifier", s:cyan[0], s:none, s:none)
-
 call s:hi("String", s:green[0], s:none, s:none)
 hi! link luaStringLongTag String
 
@@ -178,10 +175,12 @@ call s:hi("Function", s:blue[0], s:none, s:none)
 
 call s:hi("Constant", s:fg[0], s:none, s:none)
 
-call s:hi("Number", s:cyan[0], s:none, s:none)
-hi! link Type Number
+call s:hi("Number", s:yellow[0], s:none, s:none)
 hi! link Character Number
 hi! link Float Number
+
+call s:hi("Identifier", s:cyan[0], s:none, s:bold)
+hi! link Type Identifier
 
 call s:hi("PreProc", s:blue[0], s:none, s:none)
 hi! link Macro PreProc
@@ -217,11 +216,11 @@ endif
 
 " }}}
 " Diffs: {{{
-call s:hi('DiffDelete', s:red[1], s:red[3], s:none)
+call s:hi('DiffDelete', s:none, s:red[3], s:none)
 hi! link DiffRemoved DiffDelete
-call s:hi('DiffAdd', s:none, s:green[3], s:none)
+call s:hi('DiffAdd', s:none, s:blue[3], s:none)
 hi! link DiffAdded DiffAdd
-call s:hi('DiffChange', s:none, s:bg[1], s:none)
+call s:hi('DiffChange', s:none, s:bg[0], s:none)
 call s:hi('DiffText', s:none, s:yellow[3], s:none)
 " " }}}
 " LSP: {{{
@@ -231,23 +230,23 @@ call s:hi("DiagnosticWarn", s:yellow[0], s:none, s:bold)
 call s:hi("DiagnosticInfo", s:cyan[0], s:none, s:bold)
 call s:hi("DiagnosticHint", s:purple[0], s:none, s:bold)
 
-call s:hi("DiagnosticSignError", s:red[1], s:none, s:bold)
-call s:hi("DiagnosticSignWarn", s:yellow[1], s:none, s:bold)
-call s:hi("DiagnosticSignInfo", s:cyan[1], s:none, s:bold)
-call s:hi("DiagnosticSignHint", s:purple[1], s:none, s:bold)
+call s:hi("DiagnosticSignError", s:red[1], s:none, s:none)
+call s:hi("DiagnosticSignWarn", s:yellow[1], s:none, s:none)
+call s:hi("DiagnosticSignInfo", s:cyan[1], s:none, s:none)
+call s:hi("DiagnosticSignHint", s:purple[1], s:none, s:none)
 
 call s:hi("DiagnosticVirtualTextError", s:red[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextWarn", s:yellow[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextInfo", s:cyan[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextHint", s:purple[0], s:none, s:none)
 
-call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:undercurl)
+call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:underline)
 exe 'hi! DiagnosticUnderlineError guisp='.s:red[1]
-call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:undercurl)
+call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:underline)
 exe 'hi! DiagnosticUnderlineWarn guisp='.s:yellow[1]
-call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:undercurl)
+call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:underline)
 exe 'hi! DiagnosticUnderlineInfo guisp='.s:cyan[1]
-call s:hi("DiagnosticUnderlineHint", s:none, s:purple[3], s:undercurl)
+call s:hi("DiagnosticUnderlineHint", s:none, s:purple[3], s:underline)
 exe 'hi! DiagnosticUnderlineHint guisp='.s:purple[1]
 
 call s:hi("LspReferenceText", s:none, s:bg[1], s:none)
@@ -256,9 +255,9 @@ call s:hi("LspReferenceRead", s:none, s:bg[1], s:none)
 
 " }}}
 " IndentBlankLine: {{{
-hi! link IndentBlanklineChar NonText
-hi! link IndentBlanklineSpaceChar NonText
-hi! link IndentBlanklineSpaceCharBlankline NonText
+call s:hi("IndentBlanklineChar", s:bg[2], s:none, s:none)
+hi! link IndentBlanklineSpaceChar IndentBlanklineChar
+hi! link IndentBlanklineSpaceCharBlankline IndentBlanklineChar
 " }}}
 " Findr: {{{
 hi! link FindrMatch Search
@@ -270,22 +269,12 @@ hi! link FindrDir Directory
 " StatusLine: {{{
 
 call s:hi("MsgArea", s:fg[0], s:none, s:none)
-call s:hi("StatusLine", s:fg[0], s:bg[1], s:bold)
-call s:hi("StatusLineNC", s:fg[0], s:bg[1], s:bold)
-call s:hi("StatusLineOuter", s:fg[0], s:bg[1], s:bold)
-call s:hi("StatusLineInner", s:fg[3], s:bg[1], s:none)
-call s:hi("StatusLineInactive", s:fg[2], s:bg[1], s:none)
-
-call s:hi("StatusLineModeN", s:background, s:yellow[1], s:bold)
-call s:hi("StatusLineModeC", s:background, s:purple[1], s:bold)
-call s:hi("StatusLineModeR", s:background, s:red[1], s:bold)
-call s:hi("StatusLineModeI", s:background, s:cyan[1], s:bold)
-call s:hi("StatusLineModeV", s:background, s:blue[1], s:bold)
-call s:hi("StatusLineModeT", s:background, s:green[1], s:bold)
+call s:hi("StatusLine", s:fg[0], s:none, s:bold)
+call s:hi("StatusLineNC", s:fg[3], s:none, s:bold)
 
 hi! link StatusLineTermNC StatusLineNC
 hi! link StatusLineTerm StatusLine
-call s:hi("MsgSeparator", s:background, s:fg[0], s:none)
+hi! link MsgSeparator WinSeparator
 
 call s:hi("TablineSel", s:fg[0], s:bg[1], s:bold)
 call s:hi("Tabline", s:fg[3], s:bg[1], s:none)
@@ -299,7 +288,6 @@ hi! link TelescopeResultsSpecialComment Comment
 hi! link TelescopeBorder FloatBorder
 call s:hi("TelescopeTitle", s:fg[3], s:none, s:bold)
 hi! link TelescopeMatching Search
-hi! link TelescopePreviewLine CursorLine
 hi! link TelescopeSelection CursorLine
 call s:hi("TelescopeMultiSelection", s:none, s:bg[3], s:underline)
 exe "hi! TelescopeMultiSelection guisp=". s:fg[3]
@@ -357,7 +345,7 @@ exe "hi! CSVColumnEven guisp=". s:bg[1]
 exe "hi! CSVColumnOdd guisp=". s:bg[1]
 " }}}
 " Gitsigns: {{{
-call s:hi("GitSignsAdd", s:green[1], s:none, s:none)
+call s:hi("GitSignsAdd", s:blue[1], s:none, s:none)
 call s:hi("GitSignsDelete", s:red[1], s:none, s:none)
 call s:hi("GitSignsChange", s:bg[2], s:none, s:none)
 "
@@ -376,7 +364,7 @@ call s:hi("LightspeedOneCharMatch", s:fg[0], s:blue[2], s:bold)
 call s:hi("LightspeedUnlabeledMatch", s:fg[0], s:blue[2], s:bold)
 call s:hi("LightspeedMaskedChar", s:fg[0], s:none, s:none)
 call s:hi("LightspeedLabelDistant", s:fg[0], s:cyan[2], s:bold)
-call s:hi("LightspeedLabelDistantOverlapped", s:fg[0], s:cyan[3], s:bold)
+call s:hi("LightspeedLabelDistantOverlapped", s:fg[0], s:fg[3], s:bold)
 " }}}
 " Hop: {{{
 call s:hi("HopNextKey", s:fg[0], s:blue[2], s:bold_nocombine)
@@ -433,5 +421,11 @@ call s:hi("TSPunctSpecial", s:fg[0], s:none, s:none)
 " }}}
 " Hlsearch: {{{
 hi! link HlSearchLens Search
+" }}}
+" SwitchWindow: {{{
+call s:hi("SwitchWindowSelected", s:none, s:blue[2], s:none)
+call s:hi("SwitchWindowKey", s:fg[0], s:blue[3], s:bold)
+call s:hi("SwitchWindowBorder", s:fg[0], s:fg[0], s:none)
+call s:hi("SwitchWindowNormal", s:background, s:fg[0], s:none)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

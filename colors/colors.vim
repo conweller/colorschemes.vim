@@ -21,7 +21,7 @@ let s:bold_nocombine = "BOLD,NOCOMBINE"
 let s:strikethrough = "STRIKETHROUGH"
 let s:bold_underline_nocombine = "BOLD,UNDERLINE,NOCOMBINE"
 let s:bold_reverse = "BOLD,REVERSE"
-let s:underline = "UNDERline"
+let s:undercurl = "UNDERCURL"
 let s:reverse = "REVERSE"
 let s:italic = "ITALIC"
 let s:italic_reverse = "ITALIC,REVERSE"
@@ -39,14 +39,15 @@ let s:bold_italic_underline = "BOLD,ITALIC,UNDERLINE"
 " Colors: {{{
 if &bg == 'light'
   let s:background = "#FFFFFF"
-  let  s:bg      =  ["#F4F4F4",  "#EAEAEA",  "#DFDFDF",  "#ADADAD"]
-  let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#656565"]
-  let  s:red     =  ["#981200",  "#D91900", "#FF8C61",  "#FFE7DE"]
-  let  s:green   =  ["#305900",  "#5DAD00", "#53CD43",  "#CDFFC7"]
-  let  s:yellow  =  ["#674200",  "#C98700", "#E7BA51",  "#F4F3A4"]
-  let  s:blue    =  ["#004D8E",  "#007EE8", "#78B3F1",  "#D9EBFD"]
-  let  s:purple  =  ["#872162",  "#D526D5", "#C18BFF",  "#F2E7FF"]
-  let  s:cyan    =  ["#00585D",  "#009290", "#3CCDD4",  "#CAF8F1"]
+  let  s:bg      =  ["#F4F4F4",  "#EFEFEF",  "#DFDFDF",  "#ADADAD"]
+  let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#555555"]
+  let  s:red     =  ["#981200",  "#D91900", "#FF8C61",  "#FFD3D3"]
+  let  s:green   =  ["#305900",  "#5DAD00", "#53CD43",  "#C9FFC2"]
+  let  s:yellow  =  ["#674200",  "#C98700", "#EEA700",  "#F4F37A"]
+  let  s:blue    =  ["#001AD0",  "#007EE8", "#78B3F1",  "#D1DEFF"]
+  let  s:purple  =  ["#9A0062",  "#D526D5", "#C18BFF",  "#E9D7FF"]
+  let  s:cyan    =  ["#00585D",  "#009290", "#42E2E9",  "#B0FCF1"]
+  let  s:brown   =  ["#DDC1A9", "#CDB097"]
 else
   let s:background = "#000000"
   let  s:bg      =  ["#181818",  "#242424",  "#2E2E2E",  "#4B4B4B"]
@@ -57,12 +58,13 @@ else
   let  s:blue    =  ["#6CB8FA",  "#2B9AFA",  "#284CB2",  "#192443"]
   let  s:purple  =  ["#DB8EFF",  "#A951D2",  "#613792",  "#2E0067"]
   let  s:cyan    =  ["#00E0DD",  "#00C3C0",  "#005F61",  "#002C2D"]
+  let  s:brown   =  ["#574338", "#6B5548"]
 endif
 " }}}
 " General: {{{
 call s:hi("Search", s:fg[0], s:cyan[2], s:bold_nocombine)
 call s:hi('IncSearch', s:fg[0], s:yellow[2], s:bold_nocombine)
-call s:hi('TextYankPost', s:none, s:blue[3], s:none)
+call s:hi('TextYankPost', s:none, s:yellow[3], s:none)
 hi! link Substitute IncSearch
 call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
 call s:hi("Normal", s:fg[0], s:background, s:none)
@@ -75,13 +77,13 @@ call s:hi("ColorColumn", s:none, s:bg[0], s:none)
 call s:hi("SignColumn", s:none, s:none, s:none)
 call s:hi("QuickFixLine", s:none, s:bg[1], s:none)
 call s:hi("LineNr", s:bg[3], s:none, s:none)
-call s:hi("CursorLineNr", s:fg[0], s:none, s:bold)
+call s:hi("CursorLineNr", s:blue[0], s:none, s:bold)
 call s:hi("CursorLine", s:none, s:bg[0], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("WinSeparator", s:bg[3], s:none, s:none)
 call s:hi("Folded", s:fg[3], s:none, s:italic)
 call s:hi("Todo", s:fg[0], s:red[2], s:bold_nocombine)
-call s:hi('Visual', s:fg[0], s:bg[2], s:none)
+call s:hi('Visual', s:fg[0], s:brown[0], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("Error", s:red[0], s:none, s:bold)
@@ -92,7 +94,7 @@ hi! link WarningMsg ErrorMsg
 call s:hi('MoreMsg', s:background, s:blue[0], s:bold_underline)
 
 call s:hi('WildMenu', s:fg[0], s:bg[2], s:bold)
-call s:hi("NonText", s:bg[3], s:none, s:none)
+call s:hi("NonText", s:bg[3], s:none, s:nocombine)
 
 call s:hi('Pmenu', s:fg[2], s:bg[1], s:none)
 call s:hi('PmenuSel', s:background, s:fg[0], s:bold)
@@ -105,15 +107,15 @@ if has("spell")
 
   if has('nvim')
     exe 'hi! SpellBad guisp='.s:red[1]
-    exe 'hi! SpellCap guisp='.s:blue[1]
-    exe 'hi! SpellLocal guisp='.s:blue[1]
-    exe 'hi! SpellRare guisp='.s:blue[1]
+    exe 'hi! SpellCap guisp='.s:yellow[1]
+    exe 'hi! SpellLocal guisp='.s:yellow[1]
+    exe 'hi! SpellRare guisp='.s:yellow[1]
   endif
 
-  call s:hi('SpellCap',   s:none, s:none, s:underline)
-  call s:hi('SpellLocal', s:none, s:none, s:underline)
-  call s:hi('SpellRare',  s:none, s:none, s:underline)
-  call s:hi('SpellBad',   s:none, s:none, s:underline)
+  call s:hi('SpellCap',   s:none, s:yellow[3], s:undercurl)
+  call s:hi('SpellLocal', s:none, s:yellow[3], s:undercurl)
+  call s:hi('SpellRare',  s:none, s:yellow[3], s:undercurl)
+  call s:hi('SpellBad',   s:none, s:red[3],    s:undercurl)
 endif
 " }}}
 " Syntax: {{{
@@ -122,38 +124,37 @@ hi! link luaTable Normal
 hi! link rustCommentLineDoc Comment
 hi! link PythonSpaceError Comment
 hi! link FennelSpecialForm Keyword
-call s:hi("schemeIdentifier", s:fg[0], s:none, s:none)
-call s:hi("schemeParentheses", s:fg[0], s:none, s:none)
-call s:hi("yamlDocumentStart", s:fg[0], s:none, s:none)
-call s:hi("FennelSymbol", s:fg[0], s:none, s:none)
-call s:hi("vimUserFunc", s:fg[0], s:none, s:none)
+call s:hi("schemeIdentifier", s:fg[0], s:none, s:nocombine)
+call s:hi("schemeParentheses", s:fg[0], s:none, s:nocombine)
+call s:hi("yamlDocumentStart", s:fg[0], s:none, s:nocombine)
+call s:hi("FennelSymbol", s:fg[0], s:none, s:nocombine)
+call s:hi("vimUserFunc", s:fg[0], s:none, s:nocombine)
 hi! link FennelKeyword function
-call s:hi('mdDefinition', s:none, s:none, s:bold)
-call s:hi('mdDone', s:fg[0], s:bg[3], s:bold)
-call s:hi('mdOperator', s:fg[0], s:none, s:none)
+call s:hi('mdDefinition', s:none, s:none, s:bold_nocombine)
+call s:hi('mdDone', s:fg[0], s:bg[3], s:bold_nocombine)
+call s:hi('mdOperator', s:fg[0], s:none, s:nocombine)
 call s:hi('htmlStrikethrough', s:none, s:none, s:strikethrough)
-call s:hi('htmlLink', s:blue[0], s:none, s:none)
-call s:hi('htmlbold', s:none, s:none, s:bold)
+call s:hi('htmlLink', s:blue[0], s:none, s:underline_nocombine)
+call s:hi('htmlbold', s:none, s:none, s:bold_nocombine)
 call s:hi('htmlUnderline', s:none, s:none, s:underline)
 call s:hi('htmlBoldItalic', s:none, s:none, s:bold_italic)
 call s:hi('htmlItalic', s:none, s:none, s:italic)
 
 call s:hi('Comment', s:fg[3], s:none, s:italic)
-call s:hi('Conceal', s:fg[3], s:none, s:none)
+call s:hi('Conceal', s:fg[3], s:none, s:nocombine)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
-call s:hi('Directory', s:blue[0], s:none, s:bold)
+call s:hi('Directory', s:blue[0], s:none, s:bold_nocombine)
 
-call s:hi('Title',                              s:none,      s:none,       s:bold)
-call s:hi('htmlH1',                             s:blue[0],   s:none,       s:bold)
-call s:hi('htmlH2',                             s:purple[0], s:none,       s:bold)
-call s:hi('htmlH3',                             s:red[0],    s:none,       s:bold)
-call s:hi('htmlH4',                             s:yellow[0], s:none,       s:bold)
-call s:hi('htmlH5',                             s:green[0],  s:none,       s:bold)
-call s:hi('htmlH6',                             s:cyan[0],   s:none,       s:bold)
-" hi! link mdHeaderSymbol htmlH1
-
-call s:hi("Keyword", s:purple[0], s:none, s:bold)
+call s:hi('Title',                              s:none,      s:none,       s:bold_nocombine)
+" call s:hi('htmlH1',                             s:blue[0],   s:none,       s:bold_nocombine)
+" call s:hi('htmlH2',                             s:purple[0], s:none,       s:bold_nocombine)
+" call s:hi('htmlH3',                             s:red[0],    s:none,       s:bold_nocombine)
+" call s:hi('htmlH4',                             s:yellow[0], s:none,       s:bold_nocombine)
+" call s:hi('htmlH5',                             s:green[0],  s:none,       s:bold_nocombine)
+" call s:hi('htmlH6',                             s:cyan[0],   s:none,       s:bold_nocombine)
+"
+call s:hi("Keyword", s:purple[0], s:none, s:bold_nocombine)
 hi! link Structure Keyword
 hi! link Label Keyword
 hi! link Conditional Keyword
@@ -161,57 +162,57 @@ hi! link Repeat Keyword
 hi! link Exception Keyword
 hi! link Statement Keyword
 
-call s:hi("Question", s:purple[0], s:none, s:bold)
+call s:hi("Question", s:purple[0], s:none, s:bold_nocombine)
 
-call s:hi("Operator", s:red[0], s:none, s:none)
-call s:hi("Boolean ", s:red[0], s:none, s:none)
+call s:hi("Operator", s:red[0], s:none, s:nocombine)
+call s:hi("Boolean ", s:red[0], s:none, s:nocombine)
 hi! link SpecialKey Boolean
-call s:hi("Delimiter", s:fg[0], s:none, s:none)
+call s:hi("Delimiter", s:fg[0], s:none, s:nocombine)
 
-call s:hi("String", s:green[0], s:none, s:none)
+call s:hi("String", s:green[0], s:none, s:nocombine)
 hi! link luaStringLongTag String
 
-call s:hi("Function", s:blue[0], s:none, s:none)
+call s:hi("Function", s:blue[0], s:none, s:bold_nocombine)
 
-call s:hi("Constant", s:fg[0], s:none, s:none)
+call s:hi("Constant", s:fg[0], s:none, s:nocombine)
 
-call s:hi("Number", s:yellow[0], s:none, s:none)
+call s:hi("Number", s:yellow[0], s:none, s:nocombine)
 hi! link Character Number
 hi! link Float Number
+hi! link StorageClass Number
+hi! link Typedef StorageClass
 
-call s:hi("Identifier", s:cyan[0], s:none, s:bold)
+call s:hi("Identifier", s:cyan[0], s:none, s:bold_nocombine)
 hi! link Type Identifier
 
-call s:hi("PreProc", s:blue[0], s:none, s:none)
+call s:hi("PreProc", s:blue[0], s:none, s:nocombine)
 hi! link Macro PreProc
 hi! link Include PreProc
 hi! link Define PreProc
 hi! link PreCondit PreProc
 hi! link Special PreProc
 
-call s:hi("StorageClass", s:red[0],    s:none, s:none)
-hi! link Typedef StorageClass
 " }}}
 " Terminal: {{{
 hi! link Terminal Normal
 
 if has('nvim')
-  let g:terminal_color_0 = s:fg[0]
+  let g:terminal_color_0 = s:bg[0]
   let g:terminal_color_1 = s:red[0]
   let g:terminal_color_2 = s:green[0]
   let g:terminal_color_3 = s:yellow[0]
   let g:terminal_color_4 = s:blue[0]
   let g:terminal_color_5 = s:purple[0]
   let g:terminal_color_6 = s:cyan[0]
-  let g:terminal_color_7 = s:bg[2]
-  let g:terminal_color_8 = s:fg[2]
+  let g:terminal_color_7 = s:fg[0]
+  let g:terminal_color_8 = s:bg[3]
   let g:terminal_color_9 = s:red[1]
   let g:terminal_color_10 = s:green[1]
   let g:terminal_color_11 = s:yellow[1]
   let g:terminal_color_12 = s:blue[1]
   let g:terminal_color_13 = s:purple[1]
   let g:terminal_color_14 = s:cyan[1]
-  let g:terminal_color_15 = s:bg[0]
+  let g:terminal_color_15 = s:fg[3]
 endif
 
 " }}}
@@ -230,23 +231,23 @@ call s:hi("DiagnosticWarn", s:yellow[0], s:none, s:bold)
 call s:hi("DiagnosticInfo", s:cyan[0], s:none, s:bold)
 call s:hi("DiagnosticHint", s:purple[0], s:none, s:bold)
 
-call s:hi("DiagnosticSignError", s:red[1], s:none, s:none)
-call s:hi("DiagnosticSignWarn", s:yellow[1], s:none, s:none)
-call s:hi("DiagnosticSignInfo", s:cyan[1], s:none, s:none)
-call s:hi("DiagnosticSignHint", s:purple[1], s:none, s:none)
+call s:hi("DiagnosticSignError", s:red[1], s:none, s:bold)
+call s:hi("DiagnosticSignWarn", s:yellow[1], s:none, s:bold)
+call s:hi("DiagnosticSignInfo", s:cyan[1], s:none, s:bold)
+call s:hi("DiagnosticSignHint", s:purple[1], s:none, s:bold)
 
 call s:hi("DiagnosticVirtualTextError", s:red[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextWarn", s:yellow[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextInfo", s:cyan[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextHint", s:purple[0], s:none, s:none)
 
-call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:underline)
+call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineError guisp='.s:red[1]
-call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:underline)
+call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineWarn guisp='.s:yellow[1]
-call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:underline)
+call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineInfo guisp='.s:cyan[1]
-call s:hi("DiagnosticUnderlineHint", s:none, s:purple[3], s:underline)
+call s:hi("DiagnosticUnderlineHint", s:none, s:purple[3], s:undercurl)
 exe 'hi! DiagnosticUnderlineHint guisp='.s:purple[1]
 
 call s:hi("LspReferenceText", s:none, s:bg[1], s:none)
@@ -269,8 +270,8 @@ hi! link FindrDir Directory
 " StatusLine: {{{
 
 call s:hi("MsgArea", s:fg[0], s:none, s:none)
-call s:hi("StatusLine", s:fg[0], s:none, s:bold)
-call s:hi("StatusLineNC", s:fg[3], s:none, s:bold)
+call s:hi("StatusLine", s:fg[0], s:none, s:bold_nocombine)
+call s:hi("StatusLineNC", s:fg[3], s:none, s:nocombine)
 
 hi! link StatusLineTermNC StatusLineNC
 hi! link StatusLineTerm StatusLine
@@ -424,7 +425,10 @@ hi! link HlSearchLens Search
 " }}}
 " SwitchWindow: {{{
 call s:hi("SwitchWindowSelected", s:none, s:blue[2], s:none)
-call s:hi("SwitchWindowKey", s:fg[0], s:blue[3], s:bold)
+call s:hi("SwitchWindowClosed", s:fg[0], s:red[2], s:bold)
+call s:hi("SwitchWindowSwapped", s:fg[0], s:yellow[2], s:bold)
+call s:hi("SwitchWindowKey", s:fg[0], s:yellow[2], s:bold)
+call s:hi("SwitchWindowKeyCur", s:fg[0], s:blue[2], s:bold)
 call s:hi("SwitchWindowBorder", s:fg[0], s:fg[0], s:none)
 call s:hi("SwitchWindowNormal", s:background, s:fg[0], s:none)
 " }}}

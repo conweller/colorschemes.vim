@@ -39,14 +39,14 @@ let s:bold_italic_underline = "BOLD,ITALIC,UNDERLINE"
 " Colors: {{{
 if &bg == 'light'
   let s:background = "#FFFFFF"
-  let  s:bg      =  ["#F4F4F4",  "#EFEFEF",  "#DFDFDF",  "#ADADAD"]
-  let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#555555"]
-  let  s:red     =  ["#981200",  "#D91900", "#FF8C61",  "#FFD3D3"]
-  let  s:green   =  ["#305900",  "#5DAD00", "#53CD43",  "#C9FFC2"]
-  let  s:yellow  =  ["#674200",  "#C98700", "#EEA700",  "#F4F37A"]
-  let  s:blue    =  ["#001AD0",  "#007EE8", "#78B3F1",  "#D1DEFF"]
-  let  s:purple  =  ["#9A0062",  "#D526D5", "#C18BFF",  "#E9D7FF"]
-  let  s:cyan    =  ["#00585D",  "#009290", "#42E2E9",  "#B0FCF1"]
+  let  s:bg      =  ["#F4F4F4",  "#EFEFEF",  "#DFDFDF",  "#AEAEAE"]
+  let  s:fg      =  ["#000000",  "#383838",  "#4D4D4D",  "#505050"]
+  let  s:red     =  ["#9C1700",  "#D91900", "#FF8C61",  "#FFC0BA"]
+  let  s:green   =  ["#175B00",  "#5DAD00", "#53CD43",  "#C9FFC2"]
+  let  s:yellow  =  ["#6D4600",  "#C98700", "#EEA700",  "#FFD063"]
+  let  s:blue    =  ["#001CEF",  "#007EE8", "#78B3F1",  "#ACC9FF"]
+  let  s:purple  =  ["#94007D",  "#D526D5", "#C18BFF",  "#DFC5FF"]
+  let  s:cyan    =  ["#00585D",  "#009290", "#42E2E9",  "#AAF8FB"]
   let  s:brown   =  ["#DDC1A9", "#CDB097"]
 else
   let s:background = "#000000"
@@ -64,7 +64,7 @@ endif
 " General: {{{
 call s:hi("Search", s:fg[0], s:cyan[2], s:bold_nocombine)
 call s:hi('IncSearch', s:fg[0], s:yellow[2], s:bold_nocombine)
-call s:hi('TextYankPost', s:none, s:yellow[3], s:none)
+call s:hi('TextYankPost', s:fg[0], s:yellow[3], s:nocombine)
 hi! link Substitute IncSearch
 call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
 call s:hi("Normal", s:fg[0], s:background, s:none)
@@ -112,10 +112,10 @@ if has("spell")
     exe 'hi! SpellRare guisp='.s:yellow[1]
   endif
 
-  call s:hi('SpellCap',   s:none, s:yellow[3], s:undercurl)
-  call s:hi('SpellLocal', s:none, s:yellow[3], s:undercurl)
-  call s:hi('SpellRare',  s:none, s:yellow[3], s:undercurl)
-  call s:hi('SpellBad',   s:none, s:red[3],    s:undercurl)
+  call s:hi('SpellCap',   s:none, s:none, s:undercurl)
+  call s:hi('SpellLocal', s:none, s:none, s:undercurl)
+  call s:hi('SpellRare',  s:none, s:none, s:undercurl)
+  call s:hi('SpellBad',   s:none, s:none,  s:undercurl)
 endif
 " }}}
 " Syntax: {{{
@@ -217,12 +217,12 @@ endif
 
 " }}}
 " Diffs: {{{
-call s:hi('DiffDelete', s:none, s:red[3], s:none)
+call s:hi('DiffDelete', s:fg[0], s:red[3], s:nocombine)
 hi! link DiffRemoved DiffDelete
-call s:hi('DiffAdd', s:none, s:blue[3], s:none)
+call s:hi('DiffAdd', s:fg[0], s:blue[3], s:nocombine)
 hi! link DiffAdded DiffAdd
-call s:hi('DiffChange', s:none, s:bg[0], s:none)
-call s:hi('DiffText', s:none, s:yellow[3], s:none)
+call s:hi('DiffChange', s:fg[0], s:bg[0], s:nocombine)
+call s:hi('DiffText', s:fg[0], s:yellow[3], s:nocombine)
 " " }}}
 " LSP: {{{
 hi! link LspCodeLens NonText
@@ -241,13 +241,13 @@ call s:hi("DiagnosticVirtualTextWarn", s:yellow[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextInfo", s:cyan[0], s:none, s:none)
 call s:hi("DiagnosticVirtualTextHint", s:purple[0], s:none, s:none)
 
-call s:hi("DiagnosticUnderlineError", s:none, s:red[3], s:undercurl)
+call s:hi("DiagnosticUnderlineError", s:none, s:none, s:undercurl)
 exe 'hi! DiagnosticUnderlineError guisp='.s:red[1]
-call s:hi("DiagnosticUnderlineWarn", s:none, s:yellow[3], s:undercurl)
+call s:hi("DiagnosticUnderlineWarn", s:none, s:none, s:undercurl)
 exe 'hi! DiagnosticUnderlineWarn guisp='.s:yellow[1]
-call s:hi("DiagnosticUnderlineInfo", s:none, s:cyan[3], s:undercurl)
+call s:hi("DiagnosticUnderlineInfo", s:none, s:none, s:undercurl)
 exe 'hi! DiagnosticUnderlineInfo guisp='.s:cyan[1]
-call s:hi("DiagnosticUnderlineHint", s:none, s:purple[3], s:undercurl)
+call s:hi("DiagnosticUnderlineHint", s:none, s:none, s:undercurl)
 exe 'hi! DiagnosticUnderlineHint guisp='.s:purple[1]
 
 call s:hi("LspReferenceText", s:none, s:bg[1], s:none)
@@ -339,11 +339,11 @@ call s:hi("CSVColumnHeaderOdd", s:fg[0], s:none, s:bold_underline)
 call s:hi("CSVColumnHeaderEven", s:fg[0], s:none, s:bold_underline)
 call s:hi("CSVColumnEven", s:green[0], s:none, s:underline)
 call s:hi("CSVColumnOdd", s:blue[0], s:none, s:underline)
-call s:hi("CSVDelimiter", s:bg[1], s:none, s:underline)
-exe "hi! CSVColumnHeaderOdd guisp=". s:bg[1]
-exe "hi! CSVColumnHeaderEven guisp=". s:bg[1]
-exe "hi! CSVColumnEven guisp=". s:bg[1]
-exe "hi! CSVColumnOdd guisp=". s:bg[1]
+call s:hi("CSVDelimiter", s:bg[3], s:none, s:underline)
+exe "hi! CSVColumnHeaderOdd guisp=". s:bg[3]
+exe "hi! CSVColumnHeaderEven guisp=". s:bg[3]
+exe "hi! CSVColumnEven guisp=". s:bg[3]
+exe "hi! CSVColumnOdd guisp=". s:bg[3]
 " }}}
 " Gitsigns: {{{
 call s:hi("GitSignsAdd", s:blue[1], s:none, s:none)
@@ -425,11 +425,11 @@ hi! link HlSearchLens Search
 " }}}
 " SwitchWindow: {{{
 call s:hi("SwitchWindowSelected", s:none, s:blue[2], s:none)
-call s:hi("SwitchWindowClosed", s:fg[0], s:red[2], s:bold)
-call s:hi("SwitchWindowSwapped", s:fg[0], s:yellow[2], s:bold)
-call s:hi("SwitchWindowKey", s:fg[0], s:yellow[2], s:bold)
-call s:hi("SwitchWindowKeyCur", s:fg[0], s:blue[2], s:bold)
+call s:hi("SwitchWindowClosed", s:fg[0], s:red[2], s:none)
+call s:hi("SwitchWindowSwapped", s:fg[0], s:yellow[2], s:none)
+call s:hi("SwitchWindowKey", s:fg[0], s:yellow[2], s:none)
+call s:hi("SwitchWindowKeyCur", s:fg[0], s:blue[2], s:none)
 call s:hi("SwitchWindowBorder", s:fg[0], s:fg[0], s:none)
-call s:hi("SwitchWindowNormal", s:background, s:fg[0], s:none)
+call s:hi("SwitchWindowNormal", s:fg[0], s:bg[1], s:none)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

@@ -22,6 +22,7 @@ let s:strikethrough = "STRIKETHROUGH"
 let s:bold_underline_nocombine = "BOLD,UNDERLINE,NOCOMBINE"
 let s:bold_reverse = "BOLD,REVERSE"
 let s:undercurl = "UNDERCURL"
+let s:undercurl_nocombine = "UNDERCURL,NOCOMBINE"
 let s:reverse = "REVERSE"
 let s:italic = "ITALIC"
 let s:italic_reverse = "ITALIC,REVERSE"
@@ -44,7 +45,7 @@ if &bg == 'light'
   let  s:red     =  ["#9C1700",  "#D91900", "#FF8C61",  "#FFC0BA"]
   let  s:green   =  ["#175B00",  "#5DAD00", "#53CD43",  "#C9FFC2"]
   let  s:yellow  =  ["#6D4600",  "#C98700", "#EEA700",  "#FFD063"]
-  let  s:blue    =  ["#001CEF",  "#007EE8", "#78B3F1",  "#ACC9FF"]
+  let  s:blue    =  ["#0000EE",  "#007EE8", "#78B3F1",  "#ACC9FF"]
   let  s:purple  =  ["#94007D",  "#D526D5", "#C18BFF",  "#DFC5FF"]
   let  s:cyan    =  ["#00585D",  "#009290", "#42E2E9",  "#AAF8FB"]
   let  s:brown   =  ["#DDC1A9", "#CDB097"]
@@ -112,10 +113,10 @@ if has("spell")
     exe 'hi! SpellRare guisp='.s:yellow[1]
   endif
 
-  call s:hi('SpellCap',   s:none, s:none, s:undercurl)
-  call s:hi('SpellLocal', s:none, s:none, s:undercurl)
-  call s:hi('SpellRare',  s:none, s:none, s:undercurl)
-  call s:hi('SpellBad',   s:none, s:none,  s:undercurl)
+  call s:hi('SpellCap',   s:fg[0], s:yellow[3], s:undercurl_nocombine)
+  call s:hi('SpellLocal', s:fg[0], s:yellow[3], s:undercurl_nocombine)
+  call s:hi('SpellRare',  s:fg[0], s:yellow[3], s:undercurl_nocombine)
+  call s:hi('SpellBad',   s:fg[0], s:red[3],  s:undercurl_nocombine)
 endif
 " }}}
 " Syntax: {{{

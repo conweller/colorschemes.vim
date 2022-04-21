@@ -51,15 +51,15 @@ if &bg == 'light'
   let  s:brown   =  ["#DDC1A9", "#CDB097"]
 else
   let s:background = "#000000"
-  let  s:bg      =  ["#181818",  "#242424",  "#2E2E2E",  "#4B4B4B"]
+  let  s:bg      =  ["#121212",  "#191919",  "#2E2E2E",  "#4B4B4B"]
   let  s:fg      =  ["#FFFFFF",  "#BFBFBF",  "#AAAAAA",  "#A5A5A5"]
-  let  s:red     =  ["#FF8665",  "#D8502C",  "#A03000",  "#3A1000"]
-  let  s:green   =  ["#00D83D",  "#00AF32",  "#0D6700",  "#083301"]
-  let  s:yellow  =  ["#D9B000",  "#B08E00",  "#6B5600",  "#251D00"]
-  let  s:blue    =  ["#6CB8FA",  "#2B9AFA",  "#284CB2",  "#192443"]
-  let  s:purple  =  ["#DB8EFF",  "#A951D2",  "#613792",  "#2E0067"]
-  let  s:cyan    =  ["#00E0DD",  "#00C3C0",  "#005F61",  "#002C2D"]
-  let  s:brown   =  ["#574338", "#6B5548"]
+  let  s:red     =  ["#FF8665",  "#D8502C",  "#A03000",  "#581800"]
+  let  s:green   =  ["#24D155",  "#00AF32",  "#0D6700",  "#0A3E01"]
+  let  s:yellow  =  ["#F5AB00",  "#B08E00",  "#695500",  "#443500"]
+  let  s:blue    =  ["#60ABFF",  "#2B9AFA",  "#284CB2",  "#23335E"]
+  let  s:purple  =  ["#D885FF",  "#A951D2",  "#613792",  "#350076"]
+  let  s:cyan    =  ["#00C3C1",  "#00C3C0",  "#005F61",  "#003B3C"]
+  let  s:brown   =  ["#574C3F", "#645446"]
 endif
 " }}}
 " General: {{{

@@ -59,16 +59,16 @@ else
   let  s:background  =  "#151515"
   let  s:bg          =  ["#202020",  "#2E2E2E",  "#3E3E3E",  "#575757"]
   let  s:fg          =  ["#FFFFFF",  "#BFBFBF",  "#AAAAAA",  "#A5A5A5",  "#848484", "#5E5E5E"]
-  let  s:red         =  ["#FA8282",  "#D8502C",  "#A03000",  "#721F00", "#501600"]
+  let  s:red         =  ["#FA8282",  "#FF6F48",  "#A03000",  "#721F00", "#501600"]
   let  s:altred      =  ["#FF89A0"]
   let  s:green       =  ["#40D169",  "#00AF32",  "#0D6700",  "#0C4D01", "#083501"]
-  let  s:yellow      =  ["#EABF5B",  "#B08E00",  "#695500",  "#524000",  "#2C2200"]
-  let  s:blue        =  ["#7E9FFF",  "#3A61FA",  "#2842B2",  "#2A3570", "#2C2F49"]
+  let  s:yellow      =  ["#FFD063",  "#F5C600",  "#695500",  "#524000",  "#2C2200"]
+  let  s:blue        =  ["#8EABFF",  "#3A61FA",  "#2842B2",  "#2A3570", "#2C2F49"]
   let  s:altblue     =  ["#61B5F6"]
   let  s:purple      =  ["#EB7FFF",  "#A951D2",  "#613792",  "#3E008B", "#322345"]
   let  s:altpurple   =  ["#C19BFF"]
   let  s:cyan        =  ["#1FCCCA",  "#00C3C0",  "#005F61",  "#00494A", "#002F30"]
-  let  s:orange      =  ["#CF9758", "#DF7600", "#764315", "#5C4938", "#342C25"]
+  let  s:orange      =  ["#FFA53F", "#DF7600", "#764315", "#5C4938", "#342C25"]
 endif
 " }}}
 " General: {{{
@@ -106,7 +106,7 @@ call s:hi('MoreMsg', s:background, s:blue[0], s:bold_underline)
 
 call s:hi('WildMenu', s:fg[3], s:bg[2], s:bold)
 call s:hi("NonText", s:fg[5], s:none, s:nocombine)
-call s:hi("EndOfBuffer", s:fg[5], s:none, s:nocombine)
+call s:hi("EndOfBuffer", s:bg[3], s:none, s:nocombine)
 
 call s:hi('Pmenu', s:fg[1], s:bg[1], s:none)
 call s:hi('PmenuSel', s:background, s:fg[0], s:bold)
@@ -202,7 +202,11 @@ hi! link Special PreProc
 
 call s:hi("Include", s:blue[0], s:none, s:nocombine)
 
-call s:hi("TSNamespace", s:cyan[0], s:none, s:nocombine)
+hi! link @text.title Title
+hi! link @text.strong htmlBold
+hi! link @text.emphasis htmlItalic
+call s:hi("@text.literal", s:fg[1], s:none, s:nocombine)
+hi! link @text.reference htmlLink
 
 " }}}
 " Terminal: {{{
@@ -233,7 +237,7 @@ call s:hi('DiffDelete', s:fg[0], s:red[3], s:nocombine)
 hi! link DiffRemoved DiffDelete
 call s:hi('DiffAdd', s:fg[0], s:blue[3], s:nocombine)
 hi! link DiffAdded DiffAdd
-call s:hi('DiffChange', s:fg[0], s:bg[0], s:nocombine)
+call s:hi('DiffChange', s:fg[0], s:bg[1], s:nocombine)
 call s:hi('DiffText', s:fg[0], s:yellow[3], s:nocombine)
 " " }}}
 " LSP: {{{
@@ -283,32 +287,21 @@ hi! link FindrDir Directory
 " }}}
 " StatusLine: {{{
 
-call s:hi("WinBar", s:fg[4], s:background, s:underline)
-exe "hi! WinBar guisp=". s:fg[5]
+call s:hi("WinBar", s:fg[3], s:background, s:none)
 
-call s:hi("MsgArea", s:fg[2], s:none, s:none)
+call s:hi("MsgArea", s:fg[3], s:none, s:none)
 
-call s:hi("StatusLineFname", s:fg[0], s:bg[2], s:bold)
-call s:hi("StatusLineDir", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLineModified", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLineOpts", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLine", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLineNC", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLineError", s:fg[0], s:bg[2],   s:none)
-call s:hi("StatusLineWarn", s:fg[0], s:bg[2], s:none)
-call s:hi("StatusLineInfo", s:fg[0], s:bg[2],   s:none)
-call s:hi("StatusLineHint", s:fg[0], s:bg[2], s:none)
+call s:hi("StatusLine", s:fg[0], s:none, s:bold)
+call s:hi("StatusLineNC", s:fg[3], s:none, s:none)
 
 hi! link StatusLineTermNC StatusLineNC
 hi! link StatusLineTerm StatusLine
 hi! link MsgSeparator WinSeparator
 
-call s:hi("TablineSel", s:fg[0], s:bg[3], s:bold)
-call s:hi("Tabline", s:fg[0], s:bg[2], s:none)
-call s:hi("TablineFill", s:fg[0], s:bg[2], s:none)
-exe "hi! TablineSel guisp=". s:fg[0]
-exe "hi! TablineFill guisp=". s:fg[0]
-exe "hi! Tabline guisp=". s:fg[0]
+call s:hi("TablineSel", s:background, s:fg[0], s:bold)
+call s:hi("Tabline", s:fg[3], s:bg[2], s:none)
+call s:hi("TablineFill", s:fg[3], s:none, s:none)
+call s:hi("TablineDir", s:background, s:blue[0], s:bold)
 
 " }}}
 " Telsecope: {{{
@@ -333,8 +326,6 @@ hi! link Sneak Search
 " }}}
 " Tree Sitter Context: {{{
 call s:hi("TreesitterContext", s:none, s:bg[1], s:none)
-call s:hi("TSVariable", s:fg[0], s:none, s:none)
-hi! link TSKeywordOperator Keyword
 " }}}
 " Neorg: {{{
 hi! link NeorgHeading1Title htmlH1
@@ -454,12 +445,6 @@ hi! link NotifyINFOBody NotifyERRORBody
 hi! link NotifyDEBUGBody NotifyERRORBody
 hi! link NotifyTRACEBody NotifyERRORBody
 " }}}
-" Treesitter: {{{
-hi! link TSStrong HtmlBold
-hi! link TSEmphasis HtmlItalic
-hi! link TSEmphasis HtmlItalic
-hi! link TSPunctSpecial Keyword
-" }}}
 " Hlsearch: {{{
 hi! link HlSearchLens Search
 " }}}
@@ -483,7 +468,7 @@ call s:hi("LirGitStatusIgnored", s:fg[3], s:none, s:none)
 " Vimtex: {{{
 hi! link texPartArgTitle title
 " }}}
-" UFO: {{{
+" ufo: {{{
 call s:hi("UfoFoldedEllipsis", s:fg[4], s:none, s:none)
 " }}}
 " Twilight: {{{
